@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BAN2</title>
+        <link rel="stylesheet" href="./style.css">
+     <script src="https://kit.fontawesome.com/9da116f39f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <%- include("../partials/header.ejs") %>
+
+         <main class="main" style="max-width: 1200px">
+            <section class="descricao" id="desc">
+                <h2>
+                    Se você está procurando por:
+                </h2>
+                
+                <UL id="lista">
+                    <LI>Descanso
+                    <LI>Qualidade
+                    <LI>Conforto
+                </UL>
+                <br>
+                <h3>
+                    Aqui é o local ideal para você, explore as cidades e faça sua reserva!
+                </h3>
+
+                <form class="form" class="form" action="/" method="post">
+                    <div class="form-control">
+                        <label for="cidades">Cidade</label>
+                        <select name="cod_cidade" id="cidades">
+                            <% for (cidade of cidades) { %>
+                                <option value="<%= cidade.cod_cidade %>">
+                                    <%= cidade.nome %>
+                                </option>
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <button type="submit">Procurar Hotéis</button>
+                </form>
+            </section>
+        </main>
+
+        <% for (const hotel of hoteisCidade) { %>
+            <div class="container">
+                <div class="header">
+                    <a href="/hotel/<%= hotel.cod_interno %>"> <%= hotel.nome %></a>
+                </div>
+            </div>
+        <% } %>
+
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>

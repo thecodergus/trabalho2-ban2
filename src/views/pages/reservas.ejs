@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title  >BAN2</title>
+        <link rel="stylesheet" href="/style.css">
+     <script src="https://kit.fontawesome.com/9da116f39f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <%- include('../partials/header.ejs') %>
+        <%- include('../partials/error-message.ejs') %>
+        <%- include('../partials/successful-message.ejs') %>
+
+        <main class="main-hotel" style="max-width: 800px; margin-left: auto; margin-right: auto">
+            <% for (const reserva of reservaList) { %>
+                <% if  (reserva.status == 0) { %>
+                    <div class="container">
+                        <div class="header">
+                            <h3>
+                                <form id="form-<%= reserva.cod_empregado %>" class="form" method="post">
+                                    <input type="hidden" id="cod_reserva" name="cod_reserva" value="<%= reserva.cod_empregado %>">
+                                        #<%= reserva.cod_reserva %> <br>
+                                        Check-in: <%= datefns.format(reserva.check_in, 'dd/MM/yyyy') %> <br>
+                                        Check-out: <%= datefns.format(reserva.check_out, 'dd/MM/yyyy') %> <br>
+                                        Hotel: <%= hotelList.find(hotel => hotel.cod_interno == reserva.cod_hotel)?.nome %> <br>
+                                        Valor total: <%= reserva.valor_total %>
+                                        Entrada: <%= reserva.valor_entrada %>
+                                        <button type="submit" formaction="/reserva/aprovar/<%= reserva.cod_reserva %>">Aprovar</button>
+                                        <button type="submit" formaction="/reserva/rejeitar/<%= reserva.cod_reserva %>">Rejeitar</button>
+                                </form>
+                            </h3>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>

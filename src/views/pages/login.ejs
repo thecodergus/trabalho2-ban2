@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> BAN2 </title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <script src="https://kit.fontawesome.com/9da116f39f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <%- include('../partials/header.ejs') %>
+
+        <% if (successfulMessage) { %>
+            <div class="container" style="color: blue;">
+                <div class="header">
+                    <h4> <%= successfulMessage %></h4>
+                </div>
+            </div>
+        <% } %>
+
+        <% if (errorMessage) { %>
+        <div class="container" style="color: red;">
+            <div class="header">
+                <h4> <%= errorMessage %></h4>
+            </div>
+        </div>
+        <% } %>
+
+        <div class="container">
+            <div class="header">
+                <h2>Faça seu login</h2>
+            </div>
+
+            <form id="form" class="form" action="login" method="post">
+                <div class="form-control">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <i class="fas fa-check-circle"></i>
+                    <small>Mensagem de erro</small>
+                </div>
+
+                <div class="form-control">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <i class="fas fa-check-circle"></i>
+                    <small>Mensagem de erro</small>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        
+
+        <%- include('../partials/footer.ejs') %>
+        <script src="./login.js"></script> 
+    </body>
+</html>

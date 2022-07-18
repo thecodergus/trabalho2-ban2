@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title  >BAN2</title>
+        <!-- https://stackoverflow.com/questions/67558791/style-addresses-are-broken-when-use-express-params-in-node-js -->
+        <link rel="stylesheet" href="/style.css">
+     <script src="https://kit.fontawesome.com/9da116f39f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <%- include('../partials/header.ejs') %>
+
+         <main class="main-hotel">
+            <section class="descricao" id="desc">
+                <h2><%= hotel.nome %></h2>
+                <h4> Presente em <%= hotel.nome_cidade %></h4>
+                <h4> <%= hotel.endereco %> - <%= hotel.telefone%> </h4>
+                <br>
+                <img src="<%= '/hotel_' + hotel.cod_interno + '.jpg'%>" height="500px">
+                <br>
+                <a href="/reservar?cod_hotel=<%= hotel.cod_interno %>">Realizar reserva</a>
+                </form>
+            </section>
+
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>
