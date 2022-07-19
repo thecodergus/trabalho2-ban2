@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title  >BAN2</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+	    
+        <script src="https://kit.fontawesome.com/9da116f39f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <%- include('../partials/header.ejs') %>
+        <%- include('../partials/error-message.ejs') %>
+        <%- include('../partials/successful-message.ejs') %>
+
+        <main class="main-hotel">
+            <form id="form" class="form" action="/funcionario" method="post">
+                <div class="form-control">
+                    <label for="nome">Nome do funcionário</label>
+                    <input type="text" id="nome" name="nome">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <i class="fas fa-check-circle"></i>
+                    <small>Mensagem de erro</small>
+                </div>
+
+                <div class="form-control">
+                    <label for="hotel">Hotel</label>
+                    <select name="hotel" id="hotel">
+                        <% for (const hotel of hotelList) { %>
+                            <option
+                                value="<%= hotel.cod_interno %>">
+                                <%= hotel.nome %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="form-control">
+                    <label for="funcao">Função</label>
+                    <input type="text" id="funcao" name="funcao">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <i class="fas fa-check-circle"></i>
+                    <small>Mensagem de erro</small>
+                </div>
+
+                <button type="submit">Cadastrar novo Funcionário</button>
+            </form>
+
+            <% for (const funcionario of funcionarioList) { %>
+                <div class="container">
+                    <div class="header">
+                        <h3>
+                            <form id="form-<%= funcionario.cod_empregado %> " class="form" action="/funcionario/demitir" method="post">
+                                <input type="hidden" id="cod_funcionario" name="cod_funcionario" value="<%= funcionario.cod_empregado %>">
+                                    <%= funcionario.nome %> <br>
+                                    <%= funcionario.funcao %> <br>
+                                    <%= hotelList.find(hotel => hotel.cod_interno == funcionario.cod_hotel)?.nome %> <br>
+                                    <button>Demitir</button>
+                            </form>
+                        </h3>
+                    </div>
+                </div>
+            <% } %>
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+        <script>
+            function demitirFuncionario(codigo)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title  >BAN2</title>
+        <link rel="stylesheet" href="/style.css">
+     <script src="https://kit.fontawesome.com/9da116f39f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <%- include('../partials/header.ejs') %>
+        <%- include('../partials/error-message.ejs') %>
+        <%- include('../partials/successful-message.ejs') %>
+
+        <main class="main-hotel" style="max-width: 800px; margin-left: auto; margin-right: auto">
+            <% for (const estadia of estadiaList) { %>
+                <div class="container">
+                    <div class="header">
+                        <h3>
+                            <form id="form-<%= estadia.cod_estadia %>" class="form" action="/servico/novo-servico" method="post">
+                                <input
+                                    type="hidden"
+                                    id="cod_estadia-<%= estadia.cod_estadia%>"
+                                    name="cod_estadia"
+                                    value="<%= estadia.cod_estadia %>"
+                                >
+
+                                #<%= estadia.cod_estadia %> <br>
+                                <%= hotelList.find(hotel => hotel.cod_interno == estadia.cod_hotel).nome %> <br>
+                                Check-in: <%= datefns.format(estadia.check_in, 'dd/MM/yyyy') %> <br>
+                                Check-out: <%= datefns.format(estadia.check_out, 'dd/MM/yyyy') %> <br>
+                                Valor total: <%= estadia.valor_total %>
+
+                                <hr style="margin-top: 7px; margin-bottom: 7px;">
+                                
+                                <select id="select-<%= estadia.cod_estadia %>" name="cod_empregado">
+                                    <% for (const funcionario of funcionariosByHotel[estadia.cod_hotel]) { %>
+                                        <option value="<%= funcionario.cod_empregado %>">
+                                            <%= funcionario.funcao %>
+                                            &nbsp;
+                                            (<%= funcionario.nome %>)
+                                        </option>
+                                    <% } %>
+                                </select>
+                                <textarea placeholder="Observações" rows="4" id="textarea-<%= estadia.cod_estadia%>" name="descricao" style="margin-top: 3px"></textarea>
+
+                                <button type="submit">Adicionar serviço</button>
+
+                                <hr style="margin-top: 7px; margin-bottom: 7px;">
+                                
+                                <% for (const servico of servicos.filter(servico => servico.cod_estadia == estadia.cod_estadia)) { %> 
+                                <div
+                                    style="background-color: grey; border-radius: 15px; margin-top: 3px"
+                                >
+                                    <%= `${datefns.format(new Date(servico.dia), 'dd/MM/yyyy')} - ${servico.hora}`%>
+                                    <%= `${servico.funcao} (${servico.nome})` %>
+                                </div>
+                                <% } %>
+                            </form>
+                        </h3>
+                    </div>
+                </div>
+            <% } %>
+        </main>
+
+
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>

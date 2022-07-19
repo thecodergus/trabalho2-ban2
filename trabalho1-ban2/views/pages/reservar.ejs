@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title  >BAN2</title>
+        <link rel="stylesheet" href="./style.css">
+     <script src="https://kit.fontawesome.com/9da116f39f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <%- include('../partials/header.ejs') %>
+
+
+        <%- include('../partials/successful-message.ejs', { successfulMessage }) %>
+        <%- include('../partials/error-message.ejs', { errorMessage }) %>
+
+        <main class="main-hotel" style="max-width: 800px; margin-left: auto; margin-right: auto">
+            <form id="busca-data" class="form" action="/reservar" method="post">
+                <div class="form-control">
+                    <label for="hotel">Hotel</label>
+                    <select name="hotel" id="hotel" onchange="onChangeHotel()">
+                        <% for (const hotel of hotelList) { %>
+                            <option
+                                value="<%= hotel.cod_interno %>"
+                                <%= hotel.cod_interno == cod_hotel ? 'selected' : '' %>
+                            >
+                                <%= hotel.nome %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+                
+                <div class="form-control">
+                    <label for="date_checkin">Data de check-in</label>
+                    <input type="date" name="date_checkin" id="date_checkin">
+                </div>
+                    
+                <div class="form-control">
+                    <label for="date_checkout">Data de check-out</label>
+                    <input type="date" name="date_checkout" id="date_checkout">
+                </div>
+
+                <div class="form-control">
+                    <label for="cod_quarto">Quarto</label>
+                    <select name="cod_quarto" id="cod_quarto">
+                        <% for (const quarto of quartos) { %>
+                            <option value="<%= quarto.cod_quarto %>">
+                                <%= quarto.tipo_quarto == 0
+                                    ? 'single'
+                                    : quarto.tipo_quarto == 1 
+                                    ? 'duplo'
+                                    : quarto.tipo_quarto == 2
+                                    ? 'casal'
+                                    : 'suíte'
+                                %>
+                                &nbsp;
+                                R$ <%= quarto.pernoite %>/dia
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="form-control">
+                    <label for="cama_extra">Cama Extra</label>
+                    <input type="checkbox" id="cama_extra" name="cama_extra">
+                </div>
+
+                <button type="submit">Reservar</button>
+            </form>
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+        <script>
+            function onChangeHotel () {
+                const el = document.getElementById('hotel')
+                if (el.value !== null) {
+                    window.location.href = `?cod_hotel=${el.value}`
+                }
+            }
+        </script>
+    </body>
+</html>
