@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  banco_de_dados:
+    image: mongo:5.0.9
+    restart: always
+    volumes:
+      - bd_data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - rede
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ban2
+      MONGO_INITDB_ROOT_PASSWORD: trabalho
+      MONGO_INITDB_DATABASE: trabalho2
+    
+  genrenciador_banco:
+    image: mongo-express:1.0.0-alpha
+    restart: always
+    ports:
+      - 8080:8081
+    networks:
+      - rede
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ban2
+      ME_CONFIG_MONGODB_ADMINPASSWORD: trabalho
+      ME_CONFIG_MONGODB_URL: mongodb://ban2:trabalho@banco_de_dados:27017/
+    depends_on:
+      - banco_de_dados
+
+networks:
+  rede:
+
+volumes:
+  bd_data:
