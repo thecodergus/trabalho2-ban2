@@ -1,8 +1,14 @@
-import {Schema, models, model} from "mongoose";
+import {Schema, models, model } from "mongoose";
 
 const CidadeSchema = new Schema({
-    nome: String,
-    uf: String
+    nome: {
+        type: String,
+        requered: true
+    },
+    uf: {
+        type: String,
+        requered: true
+    }
 })
 
 const Cidade = models.CidadeSchema || model("Cidade", CidadeSchema)

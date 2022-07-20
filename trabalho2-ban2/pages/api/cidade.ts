@@ -1,6 +1,6 @@
 import type { NextApiRequest as Req, NextApiResponse as Res } from "next";
-import { ResponseFuncs } from "../../../types";
-import { connect } from "../../../config/connection";
+import { ResponseFuncs } from "../../types";
+import { connect } from "../../config/connection";
 
 const handler = async (req: Req, res: Res) => {
     const method: keyof ResponseFuncs = req.method as keyof ResponseFuncs
@@ -10,12 +10,12 @@ const handler = async (req: Req, res: Res) => {
     const handleCase: ResponseFuncs = {
         GET: async (req: Req, res: Res) => {
             const { Cidade } = await connect()
-            res.json(await Cidade.find({}).catch(catcher))
+            return res.json(await Cidade.find({}).catch(catcher))
         },
 
         POST: async (req: Req, res: Res) => {
             const {Cidade} = await connect()
-            res.json(await Cidade.create(req.body).catch(catcher))
+            return res.json(await Cidade.create(req.body).catch(catcher))
         }
     }
 
@@ -24,7 +24,7 @@ const handler = async (req: Req, res: Res) => {
     if(response){
         response(req, res)
     }else{
-        res.status(400).json({error: "Sem resposta para esta requisição"})
+        return res.status(400).json({error: "Sem resposta para esta requisição"})
     }
 }
 
