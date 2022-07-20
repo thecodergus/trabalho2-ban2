@@ -20,7 +20,7 @@ const HotelSchema: Schema<IHotel> = new Schema({
         type: Cidade,
         required: true
     },
-    funcionarios: [Empregado]
+    empregado: [Schema.Types.ObjectId]
 })
 
 const Hotel = models.HotelSchema || model("Hotel", HotelSchema)

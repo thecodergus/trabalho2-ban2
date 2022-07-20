@@ -24,13 +24,14 @@ export interface IHotel extends Document {
     endereco: string
     telefone: string
     cidade: ICidade
-    funcionarios: [IEmpregado]
+    empregado: [IEmpregado]
 } 
 
 export interface IUsuario extends Document{
     email: string
     senha: string
     tipo: number
+    tipo_content: IEmpregado | ICliente
     compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
 }
 
