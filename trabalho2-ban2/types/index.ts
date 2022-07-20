@@ -1,4 +1,4 @@
-import { Document, SchemaDefinition } from "mongoose"
+import { Document } from "mongoose"
 
 export interface ResponseFuncs{
     GET?: Function

@@ -1,7 +1,7 @@
 import { Schema, models, model } from "mongoose"
 import Cidade from "./Cidade"
 import Empregado from "./Empregado"
-import type { IEmpregado, ICidade, IHotel } from "../types"
+import type { IHotel } from "../types"
 
 const HotelSchema: Schema<IHotel> = new Schema({
     nome: {
