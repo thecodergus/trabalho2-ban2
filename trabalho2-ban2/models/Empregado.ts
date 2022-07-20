@@ -1,6 +1,7 @@
 import { Schema, models, model } from "mongoose"
+import type { IEmpregado } from "../types"
 
-const EmpregadoSchema = new Schema({
+const EmpregadoSchema: Schema<IEmpregado> = new Schema({
     nome: {
         type: String,
         required: true
