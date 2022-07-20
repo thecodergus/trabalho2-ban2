@@ -33,3 +33,10 @@ export interface IUsuario extends Document{
     tipo: number
     compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
 }
+
+export interface ICliente extends Document{
+    nome: string
+    cpf: string
+    endereco: string
+    telefone: string
+}
