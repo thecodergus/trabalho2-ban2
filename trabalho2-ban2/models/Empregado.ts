@@ -1,28 +1,30 @@
 import { Schema, models, model } from "mongoose"
 import type { IEmpregado } from "../types"
-import Usuario from "./Usuario"
+import {UsuarioSchema} from "./Usuario"
 import { v4 as uuid } from "uuid" 
 
-const EmpregadoSchema: Schema<IEmpregado> = new Schema({
+export const EmpregadoSchema: Schema<IEmpregado> = new Schema({
     _id: {
         type: String,
         default: uuid
     },
-    credencial: Usuario,
+    credencial: UsuarioSchema,
     nome: {
         type: String,
-        required: true
+        // required: true
     },
     endereco: {
         type: String,
-        required: true
+        // required: true
     },
     telefone: {
         type: String,
-        required: true,
-        unique: true
+        // required: true
     },
-    funcao: [String]
+    funcao: {
+        type: [String],
+        default: []
+    }
 })
 
 const Empregado = models.EmpregadoSchema || model("Empregado", EmpregadoSchema)

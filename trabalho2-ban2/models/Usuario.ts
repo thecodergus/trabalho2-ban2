@@ -7,20 +7,20 @@ import { v4 as uuid } from "uuid"
 
 const salt: number = 24
 
-const UsuarioSchema: Schema<IUsuario> = new Schema({
+export const UsuarioSchema: Schema<IUsuario> = new Schema({
     _id: {
         type: String,
         default: uuid
     },
     email: {
         type: String,
-        required: true,
-        unique: true,
+        // required: true,
+        // unique: true,
         validate: [isEmail, "E-mail invalido"]
     },
     senha: {
         type: String,
-        required: true
+        // required: true
     }
 })
 

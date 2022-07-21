@@ -1,8 +1,8 @@
 import type { IEstadia } from "../types"
 import { Schema, models, model } from "mongoose"
 import { v4 as uuid } from "uuid" 
-import Quarto from "./Quarto"
-import Servico from "./Servico"
+import {QuartoSchema} from "./Quarto"
+import {ServicoSchema} from "./Servico"
 
 const EstadiaSchema: Schema<IEstadia> = new Schema({
     _id: {
@@ -10,7 +10,7 @@ const EstadiaSchema: Schema<IEstadia> = new Schema({
         default: uuid
     },
     quarto: {
-        type: Quarto,
+        type: QuartoSchema,
         required: true
     },
     check_in: {
@@ -22,7 +22,7 @@ const EstadiaSchema: Schema<IEstadia> = new Schema({
         type: Number,
         default: 0
     },
-    servicos: [Servico]
+    servicos: [ServicoSchema]
 })
 
 const Estadia = models.EstadiaSchema || model("Estadia", EstadiaSchema)

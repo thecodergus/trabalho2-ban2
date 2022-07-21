@@ -98,3 +98,5 @@ export interface IServico extends Document{
     dia: Date
     descricao: string
 }
+
+export type Catcher = (err: Error) => void

@@ -1,34 +1,34 @@
 import type { IReserva} from "../types"
 import { Schema, models, model } from "mongoose"
 import { v4 as uuid } from "uuid" 
-import Quarto from "./Quarto"
+import {QuartoSchema} from "./Quarto"
 
-const ReservaSchema: Schema<IReserva> = new Schema({
+export const ReservaSchema: Schema<IReserva> = new Schema({
     _id: {
         type: String,
         default: uuid
     },
     quarto: {
-        type: Quarto,
-        required: true
+        type: QuartoSchema,
+        // required: true
     },
     check_in: Date,
     check_out: Date,
     dia_reserva: {
         type: Date,
-        required: true
+        // required: true
     },
     cama_extra: {
         type: Boolean,
-        default: false
+        // default: false
     },
     valor_total: {
         type: Number,
-        default: 0
+        // default: 0
     },
     valor_entrada: {
         type: Number,
-        default: 0
+        // default: 0
     },
     status: {
         type: String,

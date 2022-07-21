@@ -1,30 +1,30 @@
 import { Schema, models, model } from "mongoose"
 import type { ICliente } from "../types"
-import Usuario from "./Usuario"
+import {UsuarioSchema} from "./Usuario"
 import { v4 as uuid } from "uuid" 
 
-const ClienteSchema: Schema<ICliente> = new Schema({
+export const ClienteSchema: Schema<ICliente> = new Schema({
     _id: {
         type: String,
         default: uuid
     },
-    credencial: Usuario,
+    credencial: UsuarioSchema,
     nome: {
         type: String,
-        required: true
+        // required: true
     },
     cpf: {
         type: String,
-        required: true,
-        unique: true
+        // required: true,
+        // unique: true
     },
     endereco: {
         type: String,
-        required: true
+        // required: true
     },
     telefone: {
         type: String,
-        required: true
+        // required: true
     }
 })
 

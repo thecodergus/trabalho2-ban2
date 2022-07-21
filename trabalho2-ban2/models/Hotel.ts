@@ -1,34 +1,42 @@
 import { Schema, models, model } from "mongoose"
-import Cidade from "./Cidade"
-import Empregado from "./Empregado"
-import Cliente from "./Cliente"
+import {CidadeSchema} from "./Cidade"
+import {EmpregadoSchema} from "./Empregado"
+import {ClienteSchema} from "./Cliente"
 import type { IHotel } from "../types"
 import { v4 as uuid } from "uuid"
 
-const HotelSchema: Schema<IHotel> = new Schema({
+export const HotelSchema: Schema<IHotel> = new Schema({
     _id: {
         type: String,
         default: uuid
     },
     nome: {
         type: String,
-        required: true
+        // required: true
     },
     endereco: {
         type: String,
-        required: true
+        // required: true
     },
     telefone: {
         type: String,
-        required: true,
-        unique: true
+        // required: true,
+        // unique: true
     },
     cidade: {
-        type: Cidade,
-        required: true
+        type: CidadeSchema,
+        // required: true
     },
-    empregado: [Empregado],
-    cliente: [Cliente],
+    empregado: {
+        type: [EmpregadoSchema],
+        // required: false,
+        default: []
+    },
+    cliente: {
+        type: [ClienteSchema],
+        // required: false,
+        default: []
+    },
 })
 
 const Hotel = models.HotelSchema || model("Hotel", HotelSchema)

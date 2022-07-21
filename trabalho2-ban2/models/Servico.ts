@@ -3,7 +3,7 @@ import { Schema, models, model } from "mongoose"
 import { v4 as uuid } from "uuid" 
 
 
-const ServicoSchema: Schema<IServico> = new Schema({
+export const ServicoSchema: Schema<IServico> = new Schema({
     _id: {
         type: String,
         default: uuid
@@ -14,11 +14,11 @@ const ServicoSchema: Schema<IServico> = new Schema({
     },
     valor: {
         type: Number,
-        required: true
+        // required: true
     },
     dia: {
         type: Date,
-        required: true
+        // required: true
     },
     descricao: String
 })
