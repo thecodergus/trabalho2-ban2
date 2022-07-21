@@ -5,8 +5,7 @@ import {v4 as uuid} from "uuid"
 const CidadeSchema: Schema<ICidade> = new Schema({
     _id: {
         type: String,
-        default: uuid,
-        auto: true
+        default: uuid
     },
     nome: {
         type: String,

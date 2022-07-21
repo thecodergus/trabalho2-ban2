@@ -8,8 +8,7 @@ import { v4 as uuid } from "uuid"
 const HotelSchema: Schema<IHotel> = new Schema({
     _id: {
         type: String,
-        default: uuid,
-        auto: true
+        default: uuid
     },
     nome: {
         type: String,

@@ -10,8 +10,7 @@ const salt: number = 24
 const UsuarioSchema: Schema<IUsuario> = new Schema({
     _id: {
         type: String,
-        default: uuid,
-        auto: true
+        default: uuid
     },
     email: {
         type: String,
