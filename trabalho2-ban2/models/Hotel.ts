@@ -3,8 +3,14 @@ import Cidade from "./Cidade"
 import Empregado from "./Empregado"
 import Cliente from "./Cliente"
 import type { IHotel } from "../types"
+import { v4 as uuid } from "uuid"
 
 const HotelSchema: Schema<IHotel> = new Schema({
+    _id: {
+        type: String,
+        default: uuid,
+        auto: true
+    },
     nome: {
         type: String,
         required: true

@@ -2,11 +2,17 @@ import { Schema, models, model } from "mongoose"
 import bcrypt from "bcryptjs"
 import isEmail from "validator/lib/isEmail"
 import type { IUsuario } from "../types"
+import { v4 as uuid } from "uuid"
 
 
 const salt: number = 24
 
 const UsuarioSchema: Schema<IUsuario> = new Schema({
+    _id: {
+        type: String,
+        default: uuid,
+        auto: true
+    },
     email: {
         type: String,
         required: true,
