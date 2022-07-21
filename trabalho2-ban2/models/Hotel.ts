@@ -4,6 +4,7 @@ import {EmpregadoSchema} from "./Empregado"
 import {ClienteSchema} from "./Cliente"
 import type { IHotel } from "../types"
 import { v4 as uuid } from "uuid"
+import { QuartoSchema } from "./Quarto"
 
 export const HotelSchema: Schema<IHotel> = new Schema({
     _id: {
@@ -27,18 +28,23 @@ export const HotelSchema: Schema<IHotel> = new Schema({
         type: CidadeSchema,
         // required: true
     },
-    empregado: {
+    empregados: {
         type: [EmpregadoSchema],
         // required: false,
         default: []
     },
-    cliente: {
+    clientes: {
         type: [ClienteSchema],
         // required: false,
         default: []
     },
+    quartos: {
+        type: [QuartoSchema],
+        default: []
+    }
 })
 
-const Hotel = models.HotelSchema || model("Hotel", HotelSchema)
+
+const Hotel = models.Hotel || model<IHotel>("Hotel", HotelSchema)
 
 export default Hotel

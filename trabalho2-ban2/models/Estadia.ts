@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid"
 import {QuartoSchema} from "./Quarto"
 import {ServicoSchema} from "./Servico"
 
-const EstadiaSchema: Schema<IEstadia> = new Schema({
+export const EstadiaSchema: Schema<IEstadia> = new Schema({
     _id: {
         type: String,
         default: uuid
@@ -25,6 +25,6 @@ const EstadiaSchema: Schema<IEstadia> = new Schema({
     servicos: [ServicoSchema]
 })
 
-const Estadia = models.EstadiaSchema || model("Estadia", EstadiaSchema)
+// const Estadia = models.EstadiaSchema || model("Estadia", EstadiaSchema)
 
-export default Estadia
+// export default Estadia

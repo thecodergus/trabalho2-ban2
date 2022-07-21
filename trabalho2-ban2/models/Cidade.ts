@@ -8,6 +8,6 @@ export const CidadeSchema: Schema<ICidade> = new Schema({
     _id: false
 })
 
-const Cidade = models.CidadeSchema || model("Cidade", CidadeSchema)
+// const Cidade = models.CidadeSchema || model("Cidade", CidadeSchema)
 
-export default Cidade
+// export default Cidade

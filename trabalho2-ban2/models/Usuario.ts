@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid"
 
 const salt: number = 24
 
-export const UsuarioSchema: Schema<IUsuario> = new Schema({
+const UsuarioSchema: Schema<IUsuario> = new Schema({
     _id: {
         type: String,
         default: uuid
@@ -43,6 +43,8 @@ UsuarioSchema.methods.compararSenhas = function (senhaCandidata: string, next: (
     })
 }
 
-const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
+export default UsuarioSchema
 
-export default Usuario
+// const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
+
+// export default Usuario

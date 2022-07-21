@@ -9,7 +9,8 @@ export const connect = async () => {
                             .catch(err => console.error(err))
     console.log("Mongoose Connection Established")
 
-    return {conn, ...allSchema}
+    // return { conn, ...allSchema }
+    return { conn, ...allSchema}
 }
 
 // https://dev.to/alexmercedcoder/building-a-full-stack-todo-list-with-mongodb-nextjs-typescript-2f75

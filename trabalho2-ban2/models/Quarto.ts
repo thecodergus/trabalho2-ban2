@@ -26,6 +26,6 @@ export const QuartoSchema: Schema<IQuarto> = new Schema({
     }
 })
 
-const Quarto = models.QuartoSchema || model("Quarto", QuartoSchema)
+// const Quarto = models.QuartoSchema || model("Quarto", QuartoSchema)
 
-export default Quarto
+// export default Quarto

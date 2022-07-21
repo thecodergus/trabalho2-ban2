@@ -24,6 +24,6 @@ export const ServicoSchema: Schema<IServico> = new Schema({
 })
 
 
-const Servico = models.ServicoSchema || model("Servico", ServicoSchema)
+// const Servico = models.ServicoSchema || model("Servico", ServicoSchema)
 
-export default Servico
+// export default Servico

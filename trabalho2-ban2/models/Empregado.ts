@@ -1,6 +1,6 @@
 import { Schema, models, model } from "mongoose"
 import type { IEmpregado } from "../types"
-import {UsuarioSchema} from "./Usuario"
+import UsuarioSchema from "./Usuario"
 import { v4 as uuid } from "uuid" 
 
 export const EmpregadoSchema: Schema<IEmpregado> = new Schema({
@@ -27,6 +27,6 @@ export const EmpregadoSchema: Schema<IEmpregado> = new Schema({
     }
 })
 
-const Empregado = models.EmpregadoSchema || model("Empregado", EmpregadoSchema)
+// const Empregado = models.EmpregadoSchema || model("Empregado", EmpregadoSchema)
 
-export default Empregado
+// export default Empregado

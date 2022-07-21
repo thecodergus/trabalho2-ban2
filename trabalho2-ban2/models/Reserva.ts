@@ -37,6 +37,6 @@ export const ReservaSchema: Schema<IReserva> = new Schema({
     }
 })
 
-const Reserva = models.ReservaSchema || model("Reserva", ReservaSchema)
+// const Reserva = models.ReservaSchema || model("Reserva", ReservaSchema)
 
-export default Reserva
+// export default Reserva

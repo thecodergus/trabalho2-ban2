@@ -1,6 +1,8 @@
 import { Schema, models, model } from "mongoose"
 import type { ICliente } from "../types"
-import {UsuarioSchema} from "./Usuario"
+import UsuarioSchema from "./Usuario"
+import { ReservaSchema } from "./Reserva"
+import { EstadiaSchema } from "./Estadia"
 import { v4 as uuid } from "uuid" 
 
 export const ClienteSchema: Schema<ICliente> = new Schema({
@@ -25,9 +27,12 @@ export const ClienteSchema: Schema<ICliente> = new Schema({
     telefone: {
         type: String,
         // required: true
-    }
+    },
+    reservas: [ReservaSchema],
+    estadias: [EstadiaSchema]
+
 })
 
-const Cliente = models.ClienteSchema || model("Cliente", ClienteSchema)
+// const Cliente = models.ClienteSchema || model("Cliente", ClienteSchema)
 
-export default Cliente
+// export default Cliente

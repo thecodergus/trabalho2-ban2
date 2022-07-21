@@ -9,7 +9,6 @@ export interface ResponseFuncs{
 
 // Feito
 export interface ICidade extends Document {
-    _id: string
     nome: string
     uf: string
 }
@@ -21,8 +20,8 @@ export interface IHotel extends Document {
     endereco: string
     telefone: string
     cidade: ICidade
-    empregado: [IEmpregado]
-    cliente: [ICliente]
+    empregados: [IEmpregado]
+    clientes: [ICliente]
     quartos: [IQuarto]
 } 
 

@@ -9,9 +9,9 @@ const handler = async (req: Req, res: Res) => {
     const controller = await new CHotel(res)
 
     const handleCase: ResponseFuncs = {
-        GET: await controller.get_hoteis,
+        GET: await controller.get_hotel,
 
-        POST: await controller.criar_hotel
+        // POST: await controller.criar_hotel
     }
 
     const response = handleCase[method]
