@@ -16,10 +16,12 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
         type: String,
         // required: true,
         // unique: true,
+        select: false,
         validate: [isEmail, "E-mail invalido"]
     },
     senha: {
         type: String,
+        select: false
         // required: true
     }
 })
