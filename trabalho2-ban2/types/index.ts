@@ -36,6 +36,7 @@ export interface IUsuario extends Document{
 
 // Feito
 export interface IEmpregado extends Document {
+    _id: string
     credencial: IUsuario
     nome: string
     endereco: string
@@ -45,21 +46,26 @@ export interface IEmpregado extends Document {
 
 // Feito
 export interface ICliente extends Document {
+    _id: string
     credencial: IUsuario
     nome: string
     cpf: string
     endereco: string
     telefone: string
+    reservas: [IReserva]
+    estadias: [IEstadia]
 }
 
+// Feito
 export interface IQuarto extends Document{
     _id: string
     tipo: string
-    numerdo: number
+    numero: number
     andar: number
     preco_pernoite: number
 }
 
+// Feito
 export interface IReserva extends Document{
     _id: string
     quarto: IQuarto
@@ -69,6 +75,7 @@ export interface IReserva extends Document{
     cama_extra: boolean
     valor_total: number
     valor_entrada: number
+    status: string
 }
 
 export interface IEstadia extends Document{
@@ -77,9 +84,10 @@ export interface IEstadia extends Document{
     check_in: Date
     check_out: Date
     valor: number
-    servicoes: [IServico]
+    servicos: [IServico]
 }
 
+// Feito
 export interface IServico extends Document{
     _id: string
     empregado: {
