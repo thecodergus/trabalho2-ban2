@@ -1,7 +1,9 @@
 import { Schema, models, model } from "mongoose"
 import type { IEmpregado } from "../types"
+import Usuario from "./Usuario"
 
 const EmpregadoSchema: Schema<IEmpregado> = new Schema({
+    ...Usuario,
     nome: {
         type: String,
         required: true

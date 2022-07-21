@@ -1,8 +1,7 @@
 import { Schema, models, model } from "mongoose"
 import bcrypt from "bcryptjs"
+import isEmail from "validator/lib/isEmail"
 import type { IUsuario } from "../types"
-import Cliente from "./Cliente"
-import Empregado from "./Empregado"
 
 
 const salt: number = 24
@@ -11,18 +10,11 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        validate: [isEmail, "E-mail invalido"]
     },
     senha: {
         type: String,
-        required: true
-    },
-    tipo: {
-        type: Number,
-        required: true
-    },
-    tipo_content: {
-        type: Cliente || Empregado,
         required: true
     }
 })

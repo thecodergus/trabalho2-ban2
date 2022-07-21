@@ -11,11 +11,13 @@
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/mongoose": "^5.11.97",
+    "@types/validator": "^13.7.4",
     "bcryptjs": "^2.4.3",
     "mongoose": "^6.4.5",
     "next": "12.2.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@types/node": "18.0.6",

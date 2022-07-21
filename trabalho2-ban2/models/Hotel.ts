@@ -1,6 +1,7 @@
 import { Schema, models, model } from "mongoose"
 import Cidade from "./Cidade"
 import Empregado from "./Empregado"
+import Cliente from "./Cliente"
 import type { IHotel } from "../types"
 
 const HotelSchema: Schema<IHotel> = new Schema({
@@ -14,13 +15,15 @@ const HotelSchema: Schema<IHotel> = new Schema({
     },
     telefone: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     cidade: {
         type: Cidade,
         required: true
     },
-    empregado: [Schema.Types.ObjectId]
+    empregado: [Empregado],
+    cliente: [Cliente],
 })
 
 const Hotel = models.HotelSchema || model("Hotel", HotelSchema)
