@@ -1,8 +1,8 @@
-import type {Request, Response} from "express"
+import type {Request as Req, Response as Res} from "express"
 
 class Index {
-    all(req: Request, res: Response){
-        res.send("Ola Mundo")
+    all(req: Req, res: Res){
+        res.render("home")
     }
 }
 

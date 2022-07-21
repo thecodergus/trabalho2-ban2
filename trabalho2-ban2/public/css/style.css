@@ -1,0 +1,366 @@
+/*----------------------------DEFAULT---------------------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    
+}
+
+:root {
+    --pink-lavender: #D1B1C8;
+    --midnight-blue: #0F5257;
+    --prussian-blue: #0B3142;
+    --manatee: #9B9FB5;
+    --languid-lavender: #D6D3F0;
+    --champagne-pink: #EDDDD4;
+    --rose-dust: #9D5C63;
+    --seashell: #FEF5EF;
+    --mountbatten-pink: #8C7284;
+    --old-lavender: #7A6174;
+    --pastel-green: rgb(186, 203, 195);
+    --burnt-umber: #823329;
+    --medium-carmine: #AB4336;
+}
+
+a {
+    color: white;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 1%;
+    box-shadow: 0 px 2px 4px 2px rgb(255, 255, 255);
+    background-color: var(--prussian-blue);
+}
+
+/*----------------------------NAV BAR---------------------------------*/
+
+nav {
+    background-color: var(--burnt-umber);
+    justify-items:auto;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ol{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+
+nav ol li {
+    margin: 8px;
+}
+
+nav ol li a{
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+}
+
+nav ol li:hover a{
+    background-color: white;
+    color: var(--rose-dust);
+    border-radius: 11px;
+}
+
+nav .pesquisa {
+    margin-left: auto;
+    height: 40px;
+    line-height: 40px;
+}
+
+nav .pesquisa input {
+    border: none;
+    outline: none;
+    background-color: white;
+    height: 90%;
+    padding: 0 10px;
+    font-size: 20px;
+    width: 350px;
+}
+
+nav .pesquisa span {
+    color: white;
+    font-size: 20px;
+    height: 100%;
+    padding: 8px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+}
+
+nav .login {
+    margin-left: auto;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 11px;
+}
+
+nav .cadastro {
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 11px;
+}
+
+
+/*--------------------------------------------------------------------*/
+
+body {
+    background-color: rgb(230, 230, 230);
+}
+
+.main {
+    background-image: url("./hotel.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 4%;
+    margin-bottom: 11%;
+    color: var(--prussian-blue);
+    text-align: center;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2%;
+    padding-bottom: 5%;
+    font-size: 20px;
+}
+
+.main-hotel {
+    background-color: var(--champagne-pink);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 4%;
+    margin-bottom: 11%;
+    color: var(--prussian-blue);
+    text-align: center;
+    border-radius: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 5%;
+    font-size: 20px;
+}
+
+.main-hotel button {
+    background-color: var(--prussian-blue);
+    color: white;
+    border: 11px;
+    display: block;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 10px;
+    width: 40%;
+    margin-top: 15px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.main-hotel button:hover{
+    background-color: var(--midnight-blue);
+    color: white;
+    border: 11px;
+    display: block;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 10px;
+    width: 40%;
+    margin-top: 15px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.main-hotel a {
+    background-color: #0B3142;
+    border: 11px;
+    display: block;
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 10px;
+    width: 40%;
+    margin-top: 15px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.main ul {
+    list-style: none;
+}
+
+.main form {
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--pastel-green);
+    margin-top: 2%;
+    color:var(--prussian-blue);
+    text-align: center;
+    border-radius: 10px;
+    margin-left: 28%;
+    margin-right: 28%;
+    font-size: 19px;
+    padding: 4%;
+}
+
+
+div.bloco {
+    background-color: rgb(255, 246, 231);
+    border-radius: 10px;
+    padding: 24px;
+    width: 400px;
+    overflow: hidden;
+    margin: 20px;
+    display:inline-table;
+}
+
+/*------------------------------------------------------------------------------*/
+.form {
+    padding: 20px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: relative;
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-control input, select {
+    background-color: white;
+    border: 11px;
+    display: block;
+    border-radius: 10px;
+    font-size: 15px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--midnight-blue);
+}
+
+.form-control i {
+
+    position: absolute;
+    top: 37px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.form-control small {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    padding-top: 2px;
+}
+
+.form-control.success input {
+    border: 2px solid green;
+}
+
+.form-control.error input {
+    border: 2px solid red;
+}
+
+.form-control.success i.fa-check-circle {
+    color: green;
+    visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+    color: red;
+    visibility: visible;
+}
+
+.form-control.error small {
+    visibility: visible;
+    color: red;
+}
+
+.form button {
+    background-color: var(--prussian-blue);
+    color: white;
+    border: 11px;
+    display: block;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 10px;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.form button:hover{
+    background-color: var(--midnight-blue);
+    color: white;
+    border: 11px;
+    display: block;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 10px;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+/*------------------------------------------------------------------------------*/
+.posts {
+    background-color: rgb(255, 243, 210);
+    margin-top: 4%;
+    color:rgb(89, 48, 24);
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+
+.abrirLink {
+    background-color: var(--rose-dust);
+    border: 2px;
+    color: white;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.in {
+    margin-top: 2%;
+}
+
+/*
+input[type=submit] {
+    background-color: rgb(190, 95, 95);
+    color: white;
+    font-size: 15px;
+    padding: 8px 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+*/
+
+footer {
+    background-color: var(--prussian-blue);
+    text-align: center;
+    color: white;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    position: fixed;
+    width: 100%;
+}
