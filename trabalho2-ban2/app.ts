@@ -22,13 +22,18 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '/public')))
-app.engine(".hbs", engine({extname: ".hbs"}))
+app.engine(".hbs", engine({
+    extname: ".hbs",
+    defaultLayout: "main",
+    layoutsDir: `${__dirname}/src/views/layouts/`,
+    partialsDir: `${__dirname}/src/views/partials/`
+}))
 app.set("view engine", ".hbs")
 app.set("views", "./src/views")
 
 // Routes
-app.use(Routes.Home)
 app.use("/hotel", Routes.Hotel)
+app.use(Routes.Home)
 
 // Start server
 app.listen(port, () => console.log("Server ON"))
