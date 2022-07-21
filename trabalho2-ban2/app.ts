@@ -3,6 +3,7 @@ import { engine } from "express-handlebars"
 import {config as envConfig} from "dotenv"
 import cookieParser from "cookie-parser"
 import mongoose from "mongoose"
+import Routes from "./src/routes"
 import path from "path"
 
 // Conect database
@@ -26,8 +27,8 @@ app.set("view engine", ".hbs")
 app.set("views", "./src/views")
 
 // Routes
-import indexRoute from "./src/routes/index"
-app.use(indexRoute)
+app.use(Routes.Home)
+app.use("/hotel", Routes.Hotel)
 
 // Start server
 app.listen(port, () => console.log("Server ON"))
