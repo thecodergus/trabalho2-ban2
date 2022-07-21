@@ -3,7 +3,7 @@ import type { ICliente } from "../types"
 import Usuario from "./Usuario"
 
 const ClienteSchema: Schema<ICliente> = new Schema({
-    ...Usuario,
+    credencial: Usuario,
     nome: {
         type: String,
         required: true

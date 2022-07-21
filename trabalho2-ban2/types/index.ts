@@ -7,12 +7,14 @@ export interface ResponseFuncs{
     DELETE?: Function
 }
 
+// Feito
 export interface ICidade extends Document {
     _id: string
     nome: string
     uf: string
 }
 
+// Feito
 export interface IHotel extends Document { 
     _id: string
     nome: string
@@ -24,6 +26,7 @@ export interface IHotel extends Document {
     quartos: [IQuarto]
 } 
 
+// Feito
 export interface IUsuario extends Document{
     _id: string
     email: string
@@ -31,14 +34,18 @@ export interface IUsuario extends Document{
     compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
 }
 
-export interface IEmpregado extends IUsuario {
+// Feito
+export interface IEmpregado extends Document {
+    credencial: IUsuario
     nome: string
     endereco: string
     telefone: string
     funcao: [string]
 }
 
-export interface ICliente extends IUsuario {
+// Feito
+export interface ICliente extends Document {
+    credencial: IUsuario
     nome: string
     cpf: string
     endereco: string
