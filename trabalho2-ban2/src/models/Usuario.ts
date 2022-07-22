@@ -3,7 +3,8 @@ import bcrypt from "bcryptjs"
 import isEmail from "validator/lib/isEmail"
 import type { IUsuario } from "../types"
 import { v4 as uuid } from "uuid"
-
+import { EmpregadoSchema } from "./Empregado"
+import { ClienteSchema } from "./Cliente"
 
 const salt: number = 24
 
@@ -22,6 +23,15 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
     senha: {
         type: String,
         select: false
+        // required: true
+    },
+    empregado: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    dado: {
+        type: EmpregadoSchema || ClienteSchema,
         // required: true
     }
 })
@@ -45,8 +55,6 @@ UsuarioSchema.methods.compararSenhas = function (senhaCandidata: string, next: (
     })
 }
 
-export default UsuarioSchema
+const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
 
-// const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
-
-// export default Usuario
+export default Usuario

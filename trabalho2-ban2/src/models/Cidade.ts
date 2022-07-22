@@ -1,12 +1,14 @@
 import {Schema, models, model } from "mongoose";
 import type {ICidade} from "../types"
 
+const configs = {
+    _id: false
+}
+
 export const CidadeSchema: Schema<ICidade> = new Schema({
     nome: String,
     uf: String
-}, {
-    _id: false
-})
+}, configs)
 
 // const Cidade = models.CidadeSchema || model("Cidade", CidadeSchema)
 

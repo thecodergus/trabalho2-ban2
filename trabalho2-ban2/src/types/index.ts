@@ -24,13 +24,13 @@ export interface IUsuario extends Document{
     senha: string
     compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
     empregado: boolean
-    data: IEmpregado | ICliente
+    dado: IEmpregado | ICliente
 }
 
 // Feito
 export interface IEmpregado extends Document {
     nome: string
-    holtel_id: string
+    hotel_id: string
     endereco: string
     telefone: string
     funcao: [string]

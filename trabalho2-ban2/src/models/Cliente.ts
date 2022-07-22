@@ -3,14 +3,13 @@ import type { ICliente } from "../types"
 import UsuarioSchema from "./Usuario"
 import { ReservaSchema } from "./Reserva"
 import { EstadiaSchema } from "./Estadia"
-import { v4 as uuid } from "uuid" 
+
+const configs = {
+    _id: false
+}
+
 
 export const ClienteSchema: Schema<ICliente> = new Schema({
-    _id: {
-        type: String,
-        default: uuid
-    },
-    credencial: UsuarioSchema,
     nome: {
         type: String,
         // required: true
@@ -30,7 +29,7 @@ export const ClienteSchema: Schema<ICliente> = new Schema({
     },
     reservas: [ReservaSchema],
     estadias: [EstadiaSchema]
-})
+}, configs)
 
 // const Cliente = models.ClienteSchema || model("Cliente", ClienteSchema)
 

@@ -9,6 +9,11 @@ export const EstadiaSchema: Schema<IEstadia> = new Schema({
         type: String,
         default: uuid
     },
+    hotel_id: {
+        type: String,
+        required: true,
+        red: "Hotel"
+    },
     quarto: {
         type: QuartoSchema,
         required: true

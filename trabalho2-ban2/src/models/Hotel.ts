@@ -28,16 +28,6 @@ export const HotelSchema: Schema<IHotel> = new Schema({
         type: CidadeSchema,
         // required: true
     },
-    empregados: {
-        type: [EmpregadoSchema],
-        // required: false,
-        default: []
-    },
-    clientes: {
-        type: [ClienteSchema],
-        // required: false,
-        default: []
-    },
     quartos: {
         type: [QuartoSchema],
         default: []

@@ -8,6 +8,11 @@ export const ReservaSchema: Schema<IReserva> = new Schema({
         type: String,
         default: uuid
     },
+    hotel_id: {
+        type: String,
+        required: true,
+        red: "Hotel"
+    },
     quarto: {
         type: QuartoSchema,
         // required: true

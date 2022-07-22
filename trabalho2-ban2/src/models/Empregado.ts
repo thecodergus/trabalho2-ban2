@@ -1,14 +1,17 @@
 import { Schema, models, model } from "mongoose"
 import type { IEmpregado } from "../types"
-import UsuarioSchema from "./Usuario"
-import { v4 as uuid } from "uuid" 
+
+const configs = {
+    _id: false
+}
+
 
 export const EmpregadoSchema: Schema<IEmpregado> = new Schema({
-    _id: {
+    hotel_id: {
         type: String,
-        default: uuid
+        required: true,
+        ref: "Hotel"
     },
-    credencial: UsuarioSchema,
     nome: {
         type: String,
         // required: true
@@ -25,7 +28,7 @@ export const EmpregadoSchema: Schema<IEmpregado> = new Schema({
         type: [String],
         default: []
     }
-})
+}, configs)
 
 // const Empregado = models.EmpregadoSchema || model("Empregado", EmpregadoSchema)
 
