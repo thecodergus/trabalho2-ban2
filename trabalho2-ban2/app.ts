@@ -11,7 +11,7 @@ const app = express()
 const port = process.env.PORT_SERVER || 3000
 
 // Mongo db
-mongoose
+mongoose()
 
 // Configs
 app.use(express.json())
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '/public')))
 
-// Handlebars
+// View Engine - Handlebars
 app.engine(".hbs", engine({
     extname: ".hbs",
     defaultLayout: "main",
@@ -32,7 +32,7 @@ app.set("views", "./src/views/pages")
 
 
 // Session
-app.use(session)
+app.use(session())
 app.use(passport.initialize())
 app.use(passport.session())
 

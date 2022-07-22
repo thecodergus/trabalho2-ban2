@@ -30,6 +30,11 @@ class Login{
 
 
         req.session.loggedIn = true
+        // req.session.user = {
+        //     funcionario: false,
+        //     _id: "qualquer-coisa",
+        //     nome: "Gustavo",
+        // }
 
         return res.redirect("/home")
     }
