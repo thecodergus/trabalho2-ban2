@@ -45,7 +45,7 @@ app.set("views", "./src/views/pages")
 
 // Session
 app.use(session({
-    store: MongoStore.create({ mongoUrl: mongo_url }),
+    store: MongoStore.create({ mongoUrl: mongo_url, dbName: "session" }),
     secret: "Bando de dados 2",
     genid: () => uuid(),
     resave: false,
@@ -59,6 +59,7 @@ app.use(flash())
 
 // Routes
 app.use("/hotel", Routes.Hotel)
+app.use("/conta", Routes.Conta)
 app.use(Routes.Home)
 
 // Start server

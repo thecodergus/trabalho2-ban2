@@ -6,7 +6,7 @@ export const esta_logado = (req: Req, res: Res, next: Next) => {
     }else{
         return res.render("error", {
             title: "Usuario não autenticado",
-            message: "<a href='/conta/login'>Se autentique</a>"
+            message: "<a href='conta/login'>Se autentique</a>"
         })
     }
 }
