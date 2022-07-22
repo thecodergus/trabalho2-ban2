@@ -4,9 +4,11 @@ import { engine } from "express-handlebars"
 import {config as envConfig} from "dotenv"
 import cookieParser from "cookie-parser"
 import mongoose from "mongoose"
+import MongoStore from "connect-mongo"
 import Routes from "./src/routes"
 import path from "path"
 import { v4 as uuid } from "uuid"
+import flash from "connect-flash"
 envConfig()
 
 
@@ -21,8 +23,9 @@ const {
 } = process.env
 
 // Conect database
+const mongo_url: string = `mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_ANDRESS}:${MONGODB_PORT}`
 mongoose
-    .connect(`mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_ANDRESS}:${MONGODB_PORT}`)
+    .connect(mongo_url)
     .then(() => console.log("Conectado ao mongo"))
     .catch(err => console.error(`Deu problema:\n${err}`))
 
@@ -42,6 +45,7 @@ app.set("views", "./src/views/pages")
 
 // Session
 app.use(session({
+    store: MongoStore.create({ mongoUrl: mongo_url }),
     secret: "Bando de dados 2",
     genid: () => uuid(),
     resave: false,
@@ -51,6 +55,7 @@ app.use(session({
         maxAge: (3600000 * 24) * 7
     },
 }))
+app.use(flash())
 
 // Routes
 app.use("/hotel", Routes.Hotel)

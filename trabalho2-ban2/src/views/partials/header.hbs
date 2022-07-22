@@ -19,24 +19,22 @@
         <% } else { %>
             <li> <a href="/reservas"> Reservas </a> </li>
             <li> <a href="/funcionario"> Funcionários </a> </li>
-        <% } %>
+        <% } %> --}}
 
-        <% if (loggedIn) { %>
-            <% if (usuario.tipo === 0) { %>
-                <div class="login">
-                    <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
-                </div>
-            <% } %>
-            <div class="cadastro">
-                <a href="/logout">&nbsp Sair &nbsp</a>
+        {{#if session.loggedIn}}
+            <div class="login">
+                <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
             </div>
-        <% } else { %> --}}
+            <div class="cadastro">
+                <a href="/conta/logout">&nbsp Sair &nbsp</a>
+            </div>
+            {{else}}
             <div class="login">
                 <a href="/conta/login">&nbsp Entrar &nbsp</a>
             </div>
             <div class="cadastro">
                 <a href="/conta/cadastro">&nbsp Cadastre-se &nbsp</a>
             </div>
-        {{!-- <% } %> --}}
+        {{/if}}
     </ol>
 </nav>

@@ -1,6 +1,7 @@
 import type {Request as Req, Response as Res} from "express"
-import {Hotel} from "../models"
 import type {Catcher} from "../types"
+
+import { get_all_hotel_nome } from "../services"
 
 class Home{
 
@@ -9,8 +10,9 @@ class Home{
     public async home(req: Req, res: Res){
         // this.get_nome_hoteis()
         return res.render("home", {
-            hoteis: await Hotel.find().select({_id: true, nome: true}).lean() || {},
-            usuario: "Gustavo"
+            hoteis: await get_all_hotel_nome(),
+            usuario: "Gustavo",
+            session: req.session
         })
     }
 
