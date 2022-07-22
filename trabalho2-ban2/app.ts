@@ -8,7 +8,6 @@ import MongoStore from "connect-mongo"
 import Routes from "./src/routes"
 import path from "path"
 import { v4 as uuid } from "uuid"
-import flash from "connect-flash"
 envConfig()
 
 
@@ -55,7 +54,6 @@ app.use(session({
         maxAge: (3600000 * 24) * 7
     },
 }))
-app.use(flash())
 
 // Routes
 app.use("/hotel", Routes.Hotel)

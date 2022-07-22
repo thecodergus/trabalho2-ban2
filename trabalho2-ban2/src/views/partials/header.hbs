@@ -2,8 +2,12 @@
     <a href="/" color="white">
         </h3>
         <h1>
-            {{!-- <%= locals.loggedIn ? `Bem vindo, ${usuario.nome}` : 'Rede de Hotéis Prime SC' %> --}}
-            Bem vindo, {{ usuario }} Rede de Hotéis Prime SC'
+            {{#if session.loggedIn}}
+                Bem vindo,
+                {{"{usuario.nome}"}}
+            {{else}}
+                Rede de Hotéis Prime SC
+            {{/if}}
         </h1>
     </a>
 </header>
