@@ -1,3 +1,4 @@
+import { Response } from "express"
 import { Document } from "mongoose"
 
 export interface ResponseFuncs{
@@ -98,4 +99,4 @@ export interface IServico extends Document{
     descricao: string
 }
 
-export type Catcher = (err: Error) => void
+export type Catcher = (err: Error, Res: Response) => void

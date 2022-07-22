@@ -8,7 +8,7 @@ import Hotel from "./Hotel"
 // import Quarto from "./Quarto"
 // import Estadia from "./Estadia"
 
-export default {
+export {
     // Cidade,
     // Empregado,
     Hotel,

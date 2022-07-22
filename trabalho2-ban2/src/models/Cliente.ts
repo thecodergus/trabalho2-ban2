@@ -30,7 +30,6 @@ export const ClienteSchema: Schema<ICliente> = new Schema({
     },
     reservas: [ReservaSchema],
     estadias: [EstadiaSchema]
-
 })
 
 // const Cliente = models.ClienteSchema || model("Cliente", ClienteSchema)
