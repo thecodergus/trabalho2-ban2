@@ -4,7 +4,7 @@ import { engine } from "express-handlebars"
 import cookieParser from "cookie-parser"
 import Routes from "./src/routes"
 import path from "path"
-import { mongoose, session, passport} from "./src/configs"
+import { mongoose, session, passport} from "./configs"
 
 
 const app = express()
