@@ -1,6 +1,6 @@
-import type { Request as Req, Response as Res, NextFunction } from "express"
+import type { Request as Req, Response as Res, NextFunction as Next } from "express"
 
-export const esta_logado = (req: Req, res: Res, next: NextFunction) => {
+export const esta_logado = (req: Req, res: Res, next: Next) => {
     if(req.sessionID){
         return next()
     }else{
