@@ -1,13 +1,6 @@
 import { Response } from "express"
 import { Document } from "mongoose"
 
-export interface ResponseFuncs{
-    GET?: Function
-    POST?: Function
-    PUT?: Function
-    DELETE?: Function
-}
-
 // Feito
 export interface ICidade extends Document {
     nome: string
@@ -21,8 +14,6 @@ export interface IHotel extends Document {
     endereco: string
     telefone: string
     cidade: ICidade
-    empregados: [IEmpregado]
-    clientes: [ICliente]
     quartos: [IQuarto]
 } 
 
@@ -32,13 +23,14 @@ export interface IUsuario extends Document{
     email: string
     senha: string
     compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
+    empregado: boolean
+    data: IEmpregado | ICliente
 }
 
 // Feito
 export interface IEmpregado extends Document {
-    _id: string
-    credencial: IUsuario
     nome: string
+    holtel_id: string
     endereco: string
     telefone: string
     funcao: [string]
@@ -46,8 +38,6 @@ export interface IEmpregado extends Document {
 
 // Feito
 export interface ICliente extends Document {
-    _id: string
-    credencial: IUsuario
     nome: string
     cpf: string
     endereco: string
@@ -68,6 +58,7 @@ export interface IQuarto extends Document{
 // Feito
 export interface IReserva extends Document{
     _id: string
+    hotel_id: string
     quarto: IQuarto
     check_in: Date
     check_out: Date
@@ -80,6 +71,7 @@ export interface IReserva extends Document{
 
 export interface IEstadia extends Document{
     _id: string
+    hotel_id: string
     quarto: IQuarto
     check_in: Date
     check_out: Date
@@ -90,10 +82,7 @@ export interface IEstadia extends Document{
 // Feito
 export interface IServico extends Document{
     _id: string
-    empregado: {
-        _id: string
-        nome: string
-    }
+    empregado: IEmpregado
     valor: number
     dia: Date
     descricao: string
