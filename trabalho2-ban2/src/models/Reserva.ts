@@ -13,6 +13,11 @@ export const ReservaSchema: Schema<IReserva> = new Schema({
         required: true,
         ref: "Hotel"
     },
+    cliente_id: {
+        type: String,
+        required: true,
+        ref: "Usuario"
+    },
     quarto: {
         type: QuartoSchema,
         // required: true
@@ -42,6 +47,6 @@ export const ReservaSchema: Schema<IReserva> = new Schema({
     }
 })
 
-// const Reserva = models.ReservaSchema || model("Reserva", ReservaSchema)
+const Reserva = models.ReservaSchema || model("Reserva", ReservaSchema)
 
-// export default Reserva
+export default Reserva

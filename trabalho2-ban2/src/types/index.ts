@@ -15,6 +15,8 @@ export interface IHotel extends Document {
     telefone: string
     cidade: ICidade
     quartos: [IQuarto]
+    reservas: [string]
+    estadias: [string]
 } 
 
 // Feito
@@ -59,6 +61,7 @@ export interface IQuarto extends Document{
 export interface IReserva extends Document{
     _id: string
     hotel_id: string
+    cliente_id: string
     quarto: IQuarto
     check_in: Date
     check_out: Date
@@ -72,6 +75,7 @@ export interface IReserva extends Document{
 export interface IEstadia extends Document{
     _id: string
     hotel_id: string
+    cliente_id: string
     quarto: IQuarto
     check_in: Date
     check_out: Date

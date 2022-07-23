@@ -12,7 +12,12 @@ export const EstadiaSchema: Schema<IEstadia> = new Schema({
     hotel_id: {
         type: String,
         required: true,
-        red: "Hotel"
+        ref: "Hotel"
+    },
+    cliente_id: {
+        type: String,
+        required: true,
+        ref: "Usuario"
     },
     quarto: {
         type: QuartoSchema,
@@ -30,6 +35,6 @@ export const EstadiaSchema: Schema<IEstadia> = new Schema({
     servicos: [ServicoSchema]
 })
 
-// const Estadia = models.EstadiaSchema || model("Estadia", EstadiaSchema)
+const Estadia = models.EstadiaSchema || model("Estadia", EstadiaSchema)
 
-// export default Estadia
+export default Estadia

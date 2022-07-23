@@ -55,7 +55,7 @@ UsuarioSchema.methods.compararSenhas = function (senhaCandidata: string, next: (
 
 //  Exportandos os models
 
-export const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
+const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
 
 const options = {
     discriminatorKey: 'kind'
@@ -68,3 +68,5 @@ export const Usuario_Cliente = models.Usuario_Cliente || Usuario.discriminator("
 export const Usuario_Empregado = models.Usuario_Empregado || Usuario.discriminator("Usuario_Empregado", new Schema({
     data: EmpregadoSchema
 }, options))
+
+export default Usuario

@@ -32,11 +32,16 @@ export const HotelSchema: Schema<IHotel> = new Schema({
         type: [QuartoSchema],
         default: []
     },
-    // estadias: {
-    //     type: [String],
-    //     default: [],
-    //     ref: 'Estadia'
-    // }
+    estadias: {
+        type: [String],
+        default: [],
+        ref: 'Estadia'
+    },
+    reservas: {
+        type: [String],
+        default: [],
+        ref: 'Estadia'
+    }
 })
 
 

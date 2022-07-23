@@ -27,8 +27,16 @@ export const ClienteSchema: Schema<ICliente> = new Schema({
         type: String,
         // required: true
     },
-    reservas: [ReservaSchema],
-    estadias: [EstadiaSchema]
+    reservas: {
+        type: [String],
+        default: [],
+        ref: "Reserva"
+    },
+    estadias: {
+        type: [String],
+        default: [],
+        ref: "Estadia"
+    }
 }, configs)
 
 // const Cliente = models.ClienteSchema || model("Cliente", ClienteSchema)
