@@ -20,7 +20,7 @@ Hotel.create({
 
 Usuario_Cliente.create({
     email: `guga.power${random}@hotmail.com`,
-    senha: "lobo",
+    senha: "lobolobolobo",
     data: {
         nome: "Gustavo",
         cpf: "10865163979",
@@ -31,7 +31,7 @@ Usuario_Cliente.create({
 
 Usuario_Empregado.create({
     email: `guga.power${random}@hotel.com`,
-    senha: "lobo",
+    senha: "lobolobo",
     empregado: true,
     data: {
         hotel_id: "d305a42b-d5db-4b75-a1f0-f0806cd72913",
