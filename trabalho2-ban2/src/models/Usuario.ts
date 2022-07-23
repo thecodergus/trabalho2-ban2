@@ -15,15 +15,14 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
     },
     email: {
         type: String,
-        // required: true,
-        // unique: true,
-        select: false,
+        required: true,
+        unique: true,
         validate: [isEmail, "E-mail invalido"]
     },
     senha: {
         type: String,
-        select: false
-        // required: true
+        select: false,
+        required: true
     },
     empregado: {
         type: Boolean,
