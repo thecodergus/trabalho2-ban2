@@ -1,6 +1,6 @@
 import { Schema, models, model } from "mongoose"
 import type { ICliente } from "../types"
-import UsuarioSchema from "./Usuario"
+// import UsuarioSchema from "./Usuario"
 import { ReservaSchema } from "./Reserva"
 import { EstadiaSchema } from "./Estadia"
 

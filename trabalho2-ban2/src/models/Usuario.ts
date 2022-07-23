@@ -6,7 +6,8 @@ import { v4 as uuid } from "uuid"
 import { EmpregadoSchema } from "./Empregado"
 import { ClienteSchema } from "./Cliente"
 
-const salt: number = 24
+// Idade do Gustavo - 20
+const salt: number = 4
 
 const UsuarioSchema: Schema<IUsuario> = new Schema({
     _id: {
@@ -28,12 +29,7 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
         type: Boolean,
         required: true,
         default: false
-    },
-    // dado: {
-    //     // type: EmpregadoSchema || ClienteSchema,
-    //     type: Schema.Types.Mixed,
-    //     // required: true
-    // }
+    }
 })
 
 UsuarioSchema.pre("save", function (this: IUsuario, next: (err?: Error | undefined) => void){
@@ -44,6 +40,7 @@ UsuarioSchema.pre("save", function (this: IUsuario, next: (err?: Error | undefin
         if(err) return next(err)
 
         this.senha = hash
+        next()
     })
 })
 
@@ -61,13 +58,12 @@ const options = {
     discriminatorKey: 'kind'
 }
 
-export const Usuario_Cliente = Usuario.discriminator("Cliente", new Schema({
+export const Usuario_Cliente = Usuario.discriminator("Usuario_Cliente", new Schema({
     data: ClienteSchema
 }, options))
 
-export const Usuario_Empregado = Usuario.discriminator("Empregado", new Schema({
+export const Usuario_Empregado = Usuario.discriminator("Usuario_Empregado", new Schema({
     data: EmpregadoSchema
 }, options))
-
 
 // export default Usuario
