@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import Routes from "./src/routes"
 import path from "path"
 import { mongoose, session, passport} from "./configs"
+// import { Usuario } from "models"
 
 
 const app = express()
@@ -12,6 +13,9 @@ const port = process.env.PORT_SERVER || 3000
 
 // Mongo db
 mongoose()
+
+// Enable express session 
+app.use(session())
 
 // Configs
 app.use(express.json())
@@ -29,10 +33,7 @@ app.engine(".hbs", engine({
 app.set("view engine", ".hbs")
 app.set("views", "./src/views/pages")
 
-
-
-// Session
-app.use(session())
+// Config Middleware
 app.use(passport.initialize())
 app.use(passport.session())
 

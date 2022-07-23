@@ -1,13 +1,15 @@
 import { Schema, models, model } from "mongoose"
 import bcrypt from "bcryptjs"
 import isEmail from "validator/lib/isEmail"
+import passportLocal from "passport-local-mongoose"
 import type { IUsuario } from "../types"
 import { v4 as uuid } from "uuid"
 import { EmpregadoSchema } from "./Empregado"
 import { ClienteSchema } from "./Cliente"
+import { tokenToString } from "typescript"
 
 // Idade do Gustavo - 20
-const salt: number = 4
+const saltRounds: number = 4
 
 const UsuarioSchema: Schema<IUsuario> = new Schema({
     _id: {
@@ -22,7 +24,7 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
     },
     senha: {
         type: String,
-        select: false,
+        // select: false,
         required: true
     },
     empregado: {
@@ -33,24 +35,25 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
     data: Schema.Types.Mixed
 })
 
-UsuarioSchema.pre("save", function (this: IUsuario, next: (err?: Error | undefined) => void){
-    if(!this.isModified("senha")){
-        return next()
-    }
-    bcrypt.hash(this.senha, salt, (err: Error, hash: string) =>{
-        if(err) return next(err)
+UsuarioSchema.plugin(passportLocal)
 
-        this.senha = hash
-        next()
-    })
+
+UsuarioSchema.pre("save", async function save(next: any): Promise<void> {
+    if(!this.isModified("senha")) return next()
+
+    try{
+        const salt = await bcrypt.genSalt(saltRounds)
+        this.senha = await bcrypt.hash(this.senha, salt)
+
+        return next()
+    }catch(err: any){
+        return next(err)
+    }
 })
 
-UsuarioSchema.methods.compararSenhas = function (senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void {
-    bcrypt.compare(senhaCandidata, this.password, (err, isMatch) => {
-        if (err) return next(err, null)
 
-        next(null, isMatch)
-    })
+UsuarioSchema.methods.compararSenhas = async function compararSenhas(senha: string){
+    return await bcrypt.compare(senha, this.senha)
 }
 
 //  Exportandos os models
