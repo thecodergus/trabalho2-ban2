@@ -21,8 +21,8 @@ const random: number = Math.random() * 500000
 // }).then(e => console.log(e)).catch(err => console.error(err))
 
 // Usuario_Cliente.create({
-//     email: `guga.power${random}@hotmail.com`,
-//     senha: "lobolobolobo",
+//     username: `guga.power${random}@hotmail.com`,
+//     password: "lobolobolobo",
 //     data: {
 //         nome: "Gustavo",
 //         cpf: "10865163979",
@@ -32,8 +32,8 @@ const random: number = Math.random() * 500000
 // }).then(r => console.log(r)).catch(err => console.error(err))
 
 // Usuario_Empregado.create({
-//     email: `guga.power${random}@hotel.com`,
-//     senha: "lobolobo",
+//     username: `guga.power${random}@hotel.com`,
+//     password: "lobolobo",
 //     empregado: true,
 //     data: {
 //         hotel_id: "d305a42b-d5db-4b75-a1f0-f0806cd72913",
@@ -49,18 +49,18 @@ const random: number = Math.random() * 500000
 // }).then(e => console.log(e)).catch(err => console.error(err))
 
 async function testando() {
-    const user = await Usuario.findOne({ email: 'guga.power81120.2079927531@hotel.com'})
+    const user = await Usuario.findOne({ username: 'guga.power81120.2079927531@hotel.com'})
 
-    const senha: string = "lobolobo"
-    const compare: boolean = await user.compararSenhas(senha)
+    const password: string = "lobolobo"
+    const compare: boolean = await user.compararSenhas(password)
 
     if(compare){
-        console.log("Mesma senha")
+        console.log("Mesma password")
     }else{
-        console.log("Senhas diferentes")
+        console.log("passwords diferentes")
     }
 
-    // console.log(await user.compararSenhas(senha))
+    // console.log(await user.compararpasswords(password))
 
     // console.log(user)
 }
@@ -68,7 +68,7 @@ async function testando() {
 
 testando()
 
-// Usuario.findOne({ email: 'guga.power81120.2079927531@hotel.com'}, (err: any, user: any) => {
+// Usuario.findOne({ username: 'guga.power81120.2079927531@hotel.com'}, (err: any, user: any) => {
 //     console.log(user)
 // })
 
@@ -82,8 +82,8 @@ testando()
 //     telefone: '992166025',
 //     funcao: [ 'Fazer café', 'Programar', 'Dormir' ]
 //   },
-//   email: 'guga.power81120.2079927531@hotel.com',
-//   senha: '$2a$04$cnA6VfIpojlnPSjlNpOVQO4LekDhvj4Qtz5Dd36Eh0Mlx/TsTGMMa',
+//   username: 'guga.power81120.2079927531@hotel.com',
+//   password: '$2a$04$cnA6VfIpojlnPSjlNpOVQO4LekDhvj4Qtz5Dd36Eh0Mlx/TsTGMMa',
 //   empregado: true,
 //   __t: 'Usuario_Empregado',
 //   _id: '481314f7-7716-414d-8e34-b143e8998462',

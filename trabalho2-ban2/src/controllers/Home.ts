@@ -12,7 +12,8 @@ class Home{
         return res.render("home", {
             hoteis: await get_all_hotel_nome(),
             usuario: "Gustavo",
-            session: req.session
+            user: req.user,
+            logged: req.isAuthenticated()
         })
     }
 

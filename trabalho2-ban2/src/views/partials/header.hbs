@@ -2,7 +2,7 @@
     <a href="/" color="white">
         </h3>
         <h1>
-            {{#if session.loggedIn}}
+            {{#if logged}}
                 Bem vindo,
                 {{!-- {{sesseion.username}} --}}
             {{else}}
@@ -11,6 +11,7 @@
         </h1>
     </a>
 </header>
+{{user}}
 
 <nav>
     <ol class="categorias">
@@ -25,7 +26,7 @@
             <li> <a href="/funcionario"> Funcionários </a> </li>
         <% } %> --}}
 
-        {{#if session.loggedIn}}
+        {{#if logged}}
             <div class="login">
                 <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
             </div>

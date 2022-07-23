@@ -5,16 +5,17 @@ import type { IUsuario } from "../types"
 import { v4 as uuid } from "uuid"
 import { EmpregadoSchema } from "./Empregado"
 import { ClienteSchema } from "./Cliente"
-import { tokenToString } from "typescript"
+import passportLocalMoogonse from "passport-local-mongoose"
 
 // Idade do Gustavo - 20
 const saltRounds: number = 4
 
-const UsuarioSchema: Schema<IUsuario> = new Schema({
+export const UsuarioSchema: Schema<IUsuario> = new Schema({
     _id: {
         type: String,
         default: uuid
     },
+    // E-Mail
     email: {
         type: String,
         required: true,
@@ -33,6 +34,8 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
     },
     data: Schema.Types.Mixed
 })
+
+// UsuarioSchema.plugin(passportLocalMoogonse)
 
 // referencia:
 // https://stackoverflow.com/questions/14588032/mongoose-password-hashing
@@ -56,7 +59,7 @@ UsuarioSchema.methods.compararSenhas = async function compararSenhas(senha: stri
 
 //  Exportandos os models
 
-const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
+export const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
 
 const options = {
     discriminatorKey: 'kind'

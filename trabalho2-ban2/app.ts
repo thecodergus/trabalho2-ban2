@@ -4,8 +4,10 @@ import { engine } from "express-handlebars"
 import cookieParser from "cookie-parser"
 import Routes from "./src/routes"
 import path from "path"
-import { mongoose, session, passport} from "./configs"
-// import { Usuario } from "models"
+import { mongoose, session} from "./configs"
+
+import { Usuario, UsuarioSchema } from "./src/models/Usuario"
+import passport from "passport"
 
 
 const app = express()
@@ -33,9 +35,10 @@ app.engine(".hbs", engine({
 app.set("view engine", ".hbs")
 app.set("views", "./src/views/pages")
 
-// Config Middleware
-app.use(passport.initialize())
-app.use(passport.session())
+// Passport
+passport.serializeUser<any, any>((req, user, done) => {
+    done(undefined, user)
+})
 
 // Routes
 app.use("/hotel", Routes.Hotel)

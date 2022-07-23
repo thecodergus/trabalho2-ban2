@@ -1,26 +1,37 @@
-import passport from "passport"
+import { Request } from "express"
 import { Strategy as LocalStrategy } from "passport-local"
-import { Usuario } from "models"
-import { IUsuario } from "types"
+import passport from "passport"
+import { Usuario } from "../src/models"
+import { IUsuario } from "../src/types"
+
+export const passport_local_options = {
+    usernameField: "email",
+    passwordField: "senha"
+}
 
 // Configurar passoport - que contem as informações de cada usuario
-passport.use(new LocalStrategy(
-    { usernameField: "email", passwordField: "senha" },
-    function (email: string, senha: string, done: any) {
-        Usuario.findOne({email}, (err: any, usuario: IUsuario) => {
-            if(err) return done(err)
-            if(!usuario) return done(null, false)
-            if(!usuario.compararSenhas(senha)) return done(null, false)
+const my_Strategy = new LocalStrategy(async (username: string, password: string, done: any) => {
+        // console.log("OIIIIII")
+        // console.log(`${username} - ${password}`)
+        // console.log("pau no cu de geral".toUpperCase())
+        const usuario: any = await Usuario.findOne({email: username})
 
-            return done(null, usuario)
-        })
+        // if (err) return done(err)
+        if (!(await usuario)) return done(null, false)
+        if (!(await usuario.compararSenhas(password))) return done(null, false)
+
+        return done(null, usuario)
     }
-))
+)
 
-// passport.use(new LocalStrategy(Usuario.authenticate()))
-// passport.use(Usuario.createStrategy(`{}`))
 
-// passport.serializeUser(Usuario.serializeUser());
-// passport.deserializeUser(Usuario.deserializeUser());
+// export const passport_local_config = (req: Request, email: string, senha: string, done: any) => {
+//             console.log("pau no cu de geral - local_config".toUpperCase())
+//             Usuario.findOne({ email: email }, (err: any, user: IUsuario) => {
+//             if (err) return done(err)
+//             if (!user) return done(null, false)
+//             if (!user.compararSenhas(senha)) return done(null, false)
 
-export default passport
+//             return done(null, user)
+//         })w
+//     }
