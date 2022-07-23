@@ -24,7 +24,7 @@ export interface IUsuario extends Document{
     senha: string
     compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
     empregado: boolean
-    dado: IEmpregado | ICliente
+    data: IEmpregado | ICliente
 }
 
 // Feito

@@ -1,6 +1,6 @@
 import { Hotel} from "../src/models"
 import mongoose from "mongoose"
-import { Usuario_Cliente, Usuario_Empregado } from "../src/models/Usuario"
+import { Usuario_Cliente, Usuario_Empregado, Usuario } from "../src/models/Usuario"
 
 const mongo_url: string = `mongodb://ban2:trabalho@localhost:27017`
 mongoose
@@ -45,3 +45,6 @@ Usuario_Empregado.create({
         ]
     }
 }).then(r => console.log(r)).catch(err => console.error(err))
+
+
+// Usuario.find().then(e => console.log(e)).catch(err => console.error(err))

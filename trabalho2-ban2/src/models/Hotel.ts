@@ -31,7 +31,12 @@ export const HotelSchema: Schema<IHotel> = new Schema({
     quartos: {
         type: [QuartoSchema],
         default: []
-    }
+    },
+    // estadias: {
+    //     type: [String],
+    //     default: [],
+    //     ref: 'Estadia'
+    // }
 })
 
 

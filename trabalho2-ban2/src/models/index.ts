@@ -1,7 +1,7 @@
 // import Cidade from "./Cidade"
 // import Empregado from "./Empregado"
 import Hotel from "./Hotel"
-import { Usuario_Cliente, Usuario_Empregado } from "./Usuario"
+import { Usuario_Cliente, Usuario_Empregado, Usuario } from "./Usuario"
 // import Cliente from "./Cliente"
 // import Servico from "./Servico"
 // import Reserva from "./Reserva"
@@ -12,7 +12,7 @@ export {
     // Cidade,
     // Empregado,
     Hotel,
-    // Usuario,
+    Usuario,
     Usuario_Empregado,
     Usuario_Cliente
     // Cliente,
