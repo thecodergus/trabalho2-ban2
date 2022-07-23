@@ -29,10 +29,11 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
         required: true,
         default: false
     },
-    dado: {
-        type: EmpregadoSchema || ClienteSchema,
-        // required: true
-    }
+    // dado: {
+    //     // type: EmpregadoSchema || ClienteSchema,
+    //     type: Schema.Types.Mixed,
+    //     // required: true
+    // }
 })
 
 UsuarioSchema.pre("save", function (this: IUsuario, next: (err?: Error | undefined) => void){
@@ -56,4 +57,17 @@ UsuarioSchema.methods.compararSenhas = function (senhaCandidata: string, next: (
 
 const Usuario = models.UsuarioSchema || model("Usuario", UsuarioSchema)
 
-export default Usuario
+const options = {
+    discriminatorKey: 'kind'
+}
+
+export const Usuario_Cliente = Usuario.discriminator("Cliente", new Schema({
+    data: ClienteSchema
+}, options))
+
+export const Usuario_Empregado = Usuario.discriminator("Empregado", new Schema({
+    data: EmpregadoSchema
+}, options))
+
+
+// export default Usuario
