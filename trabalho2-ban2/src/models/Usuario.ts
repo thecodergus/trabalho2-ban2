@@ -1,7 +1,6 @@
 import { Schema, models, model } from "mongoose"
 import bcrypt from "bcryptjs"
 import isEmail from "validator/lib/isEmail"
-import passportLocal from "passport-local-mongoose"
 import type { IUsuario } from "../types"
 import { v4 as uuid } from "uuid"
 import { EmpregadoSchema } from "./Empregado"
@@ -35,9 +34,8 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
     data: Schema.Types.Mixed
 })
 
-UsuarioSchema.plugin(passportLocal)
-
-
+// referencia:
+// https://stackoverflow.com/questions/14588032/mongoose-password-hashing
 UsuarioSchema.pre("save", async function save(next: any): Promise<void> {
     if(!this.isModified("senha")) return next()
 
