@@ -14,8 +14,8 @@ class Login{
         const password: string = req.body.password || undefined
 
         const check: boolean[] = [
-            email === undefined,
-            password === undefined,
+            email.trim() === "",
+            password.trim() === "",
             !validator.isEmail(email)
         ]
         
@@ -53,6 +53,56 @@ class Login{
     }
 
     public async cadastro(req: Req, res: Res){
+        const {
+            email,
+            name,
+            cpf,
+            password,
+            passwordConfirmation,
+            telephone,
+            adress,
+        } = req.body
+
+        const cpf_regex = /^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$/
+
+        const check: boolean[] = [
+            validator.isEmpty(email),
+            validator.isEmpty(name),
+            validator.isEmpty(cpf),
+            validator.isEmpty(password),
+            validator.isEmpty(passwordConfirmation)
+        ]
+
+        if(check.some(i => i)){
+            return res.render("cadastro", {
+                error: {
+                    title: "Preencha os campos corretamente",
+                    message: "Preencha todos os campos obgrigatorios(e-mail, nome, cpf, senha e confirmação de senha)"
+                }
+            })
+        }else if(!validator.isEmail(email)){
+            return res.render("cadastro", {
+                error: {
+                    title: "Preencha os campos corretamente",
+                    message: "E-mail invalido"
+                }
+            })
+        } else if (password !== passwordConfirmation){
+            return res.render("cadastro", {
+                error: {
+                    title: "Preencha os campos corretamente",
+                    message: "Digite senha e confirmação de senha iguais!"
+                }
+            })
+        }else if (!validator.matches(cpf, cpf_regex)){
+            return res.render("Cadastro", {
+                error: {
+                    title: "Preencha os campos corretamente",
+                    message: "Cpf invalido"
+                }
+            })
+        }
+
         return res.redirect("/home")
     }
 }
