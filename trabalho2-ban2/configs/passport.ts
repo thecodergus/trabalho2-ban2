@@ -9,29 +9,42 @@ export const passport_local_options = {
     passwordField: "senha"
 }
 
-// Configurar passoport - que contem as informações de cada usuario
-const my_Strategy = new LocalStrategy(async (username: string, password: string, done: any) => {
-        // console.log("OIIIIII")
-        // console.log(`${username} - ${password}`)
-        // console.log("pau no cu de geral".toUpperCase())
-        const usuario: any = await Usuario.findOne({email: username})
+export const my_Strategy: any = new LocalStrategy((email: string, password: string, done: any) => {
+    Usuario.findOne({ email: email.toLowerCase() }, async (err: NativeError, user: IUsuario) => {
+        if (err) return done(err)
 
-        // if (err) return done(err)
-        if (!(await usuario)) return done(null, false)
-        if (!(await usuario.compararSenhas(password))) return done(null, false)
+        if (!user) {
+            return done(undefined, false, {
+                error: {
+                    title: "Error",
+                    message: "Email não encontrado"
+                }
+            })
+        }
 
-        return done(null, usuario)
-    }
-)
+        const r: boolean = await user.compararSenhas(password)
+
+        if (r) {
+            return await done(undefined, user)
+        } else {
+            return done(undefined, false, {
+                error: {
+                    title: "Error",
+                    message: "Email ou senha errados"
+                }
+            })
+        }
+
+    })
+})
+
+passport.serializeUser<any, any>((req, user, done) => {
+    done(undefined, user)
+})
+passport.deserializeUser((id: any, done: any) => {
+    Usuario.findById(id, (err: NativeError, user: IUsuario) => done(err, user.toJSON()))
+})
+passport.use(my_Strategy)
 
 
-// export const passport_local_config = (req: Request, email: string, senha: string, done: any) => {
-//             console.log("pau no cu de geral - local_config".toUpperCase())
-//             Usuario.findOne({ email: email }, (err: any, user: IUsuario) => {
-//             if (err) return done(err)
-//             if (!user) return done(null, false)
-//             if (!user.compararSenhas(senha)) return done(null, false)
-
-//             return done(null, user)
-//         })w
-//     }
+export default passport
