@@ -12,7 +12,8 @@ route.get("/login", controller.login_screen)
 //     failureFlash: true
 // }))
 
-route.post("/login", (req: Request, res: Response) => res.redirect("/home"))
+// route.post("/login", (req: Request, res: Response) => res.redirect("/home"))
+route.post("/login", controller.login)
 
 route.get("/logout", controller.logout)
 

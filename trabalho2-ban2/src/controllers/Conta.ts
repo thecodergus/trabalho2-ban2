@@ -1,7 +1,9 @@
 import type { NextFunction as Next, Request as Req, Response as Res } from "express"
-import type { Catcher } from "../types"
+import type { Catcher, IUsuario } from "../types"
 import validator from "validator"
 import passport from "passport"
+import { IVerifyOptions } from "passport-local"
+import { Usuario } from "../models"
 
 class Login{
     public async login_screen(req: Req, res: Res){
@@ -10,42 +12,47 @@ class Login{
         })
     }
 
-    // public async login(req: Req, res: Res){
-    //     const email: string = req.body.email || undefined
-    //     const password: string = req.body.password || undefined
+    public async login(req: Req, res: Res, next: Next){
+        const email: string = req.body.email || undefined
+        const password: string = req.body.password || undefined
 
-    //     const check: boolean[] = [
-    //         email.trim() === "",
-    //         password.trim() === "",
-    //         !validator.isEmail(email)
-    //     ]
+        const check: boolean[] = await [
+            email.trim() === "",
+            password.trim() === "",
+            !validator.isEmail(email)
+        ]
         
-    //     if(check.some(item => item)){
-    //         return res.render("login", {
-    //             error: {
-    //                 title: "Erro de login",
-    //                 message: "E-mail ou senha incorretos"
-    //             }
-    //         })
-    //     }
+        if(await check.some(item => item)){
+            return res.render("login", {
+                error: {
+                    title: "Erro de login",
+                    message: "E-mail ou senha incorretos"
+                }
+            })
+        }
 
+        console.log(`1: email: ${email} password: ${password}`)
 
-    //     passport.authenticate("local", {
-    //         failureRedirect: "conta/login"
-    //     })
+        req.body.username = await email
+        req.body.password = await password
+        passport.authenticate("local", (err: Error, user: IUsuario, info: IVerifyOptions) => {
+            // console.log(`2: email: ${email} password: ${password}`)
+            // console.log(user)
+            // console.log(info)
+            if(err) next(err)
+            if(!user){
+                res.redirect("/login")
+            }
 
-    //     return res.redirect("/home")
-    // }
-
-    public async login(req: Req, res: Res){
-        return res.redirect("/home")
+            req.logIn(user, err => {
+                if(err) return next(err)
+                return res.redirect("/home")
+            })
+        })(req, res, next)
     }
 
     public async logout(req: Req, res: Res, next: Next){
-        // req.session.loggedIn = false
-        // req.session.destroy(err => res.render("error", {title: "Erro com logout", message: err}))
-
-        await req.logout((err: any) => {
+        await req.logout((err: Error) => {
             if(err) return next(err)
         })
 
@@ -110,7 +117,32 @@ class Login{
             })
         }
 
-        return res.redirect("/home")
+        const usuario: any = new Usuario({
+            email,
+            senha: password,
+            data: {
+                nome: name,
+                cpf,
+                telephone,
+                adress
+            }
+        })
+
+        try{
+            await usuario.save()
+            return res.redirect("/home")
+            
+        }catch(err: any){
+            return res.render("cadastro", {
+                error: {
+                    title: "Error",
+                    message: err
+                }
+            })
+        }
+        
+
+        
     }
 }
 

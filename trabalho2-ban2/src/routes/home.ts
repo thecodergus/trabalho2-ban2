@@ -5,6 +5,6 @@ const route = Router()
 
 route.get("/home", controller.home)
 
-// route.get("*", controller.resto)
+route.get("*", controller.resto)
 
 export default route

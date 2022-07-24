@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express"
+import { IUsuario } from "../types";
 
 export const verificar_login = async (req: Request, res: Response, next: NextFunction) => {
     if(await req.isAuthenticated()){
@@ -9,4 +10,11 @@ export const verificar_login = async (req: Request, res: Response, next: NextFun
             message: "<a href='conta/login'>Se autentique</a>"
         })
     }
+}
+
+export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/login");
 }

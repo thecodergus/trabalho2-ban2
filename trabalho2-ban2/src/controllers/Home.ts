@@ -9,11 +9,13 @@ class Home{
 
     public async home(req: Req, res: Res){
         // this.get_nome_hoteis()
+        // console.log(req.user)
+        // console.log(req.isAuthenticated())
         return res.render("home", {
             hoteis: await get_all_hotel_nome(),
             usuario: "Gustavo",
-            user: req.user,
-            logged: req.isAuthenticated()
+            user: await req.user,
+            logged: await req.isAuthenticated()
         })
     }
 

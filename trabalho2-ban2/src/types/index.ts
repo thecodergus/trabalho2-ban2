@@ -27,6 +27,7 @@ export interface IUsuario extends Document{
     // compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
     // compararSenhas(senhaCandidata: string): Promise<boolean>
     compararSenhas(data: string): boolean
+    // compararSenhas(data: string, next: (err: Error, isMatch: boolean) => void): void
     empregado: boolean
     data: IEmpregado | ICliente
 }
