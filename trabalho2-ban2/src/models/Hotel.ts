@@ -1,10 +1,11 @@
 import { Schema, models, model } from "mongoose"
-import {CidadeSchema} from "./Cidade"
+import Cidade, {CidadeSchema} from "./Cidade"
 import {EmpregadoSchema} from "./Empregado"
 import {ClienteSchema} from "./Cliente"
 import type { IHotel } from "../types"
 import { v4 as uuid } from "uuid"
 import { QuartoSchema } from "./Quarto"
+
 
 export const HotelSchema: Schema<IHotel> = new Schema({
     _id: {
@@ -26,6 +27,7 @@ export const HotelSchema: Schema<IHotel> = new Schema({
     },
     cidade: {
         type: CidadeSchema,
+        // ref: "Cidade"
         // required: true
     },
     quartos: {
@@ -42,6 +44,26 @@ export const HotelSchema: Schema<IHotel> = new Schema({
         default: [],
         ref: 'Estadia'
     }
+})
+
+HotelSchema.pre("save", async function save(next: any): Promise<void> {
+    const cidade = await Cidade.findOne({
+        nome: this.cidade.nome,
+        uf: this.cidade.uf
+    })
+
+    if(!cidade){
+        const create_cidade = await Cidade.create({
+            nome: this.cidade.nome,
+            uf: this.cidade.uf
+        })
+
+        this.cidade = await create_cidade
+    }else{
+        this.cidade = await cidade
+    }
+
+    return next()
 })
 
 

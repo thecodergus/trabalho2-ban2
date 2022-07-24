@@ -3,6 +3,7 @@ import { Document } from "mongoose"
 
 // Feito
 export interface ICidade extends Document {
+    _id?: string
     nome: string
     uf: string
 }
@@ -24,10 +25,7 @@ export interface IUsuario extends Document{
     _id: string
     email: string
     senha: string
-    // compararSenhas(senhaCandidata: string, next: (err: Error | null, same: boolean | null) => void): void
-    // compararSenhas(senhaCandidata: string): Promise<boolean>
     compararSenhas(data: string): boolean
-    // compararSenhas(data: string, next: (err: Error, isMatch: boolean) => void): void
     empregado: boolean
     data: IEmpregado | ICliente
 }

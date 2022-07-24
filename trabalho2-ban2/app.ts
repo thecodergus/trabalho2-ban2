@@ -6,6 +6,7 @@ import Routes from "./src/routes"
 import path from "path"
 import { mongoose, session} from "./configs"
 import passport from "./configs/passport"
+import { IUsuario, IEmpregado, ICliente } from "types"
 
 
 const app = express()

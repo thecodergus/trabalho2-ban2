@@ -1,15 +1,19 @@
 import {Schema, models, model } from "mongoose";
 import type {ICidade} from "../types"
-
-const configs = {
-    _id: false
-}
+import {v4 as uuid} from "uuid"
+// import findOrCreate from "mongoose-findorcreate"
 
 export const CidadeSchema: Schema<ICidade> = new Schema({
+    _id: {
+        type: String,
+        default: uuid
+    },
     nome: String,
     uf: String
-}, configs)
+})
 
-// const Cidade = models.CidadeSchema || model("Cidade", CidadeSchema)
+// CidadeSchema.plugin(findOrCreate)
 
-// export default Cidade
+const Cidade = models.CidadeSchema || model("Cidade", CidadeSchema)
+
+export default Cidade

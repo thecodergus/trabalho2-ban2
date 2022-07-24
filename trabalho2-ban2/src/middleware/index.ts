@@ -16,7 +16,7 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
     if (req.isAuthenticated()) {
         return next();
     }
-    res.redirect("/login");
+    return res.redirect("/login");
 }
 
 export const isNotAuthenticated = (req: Request, res: Response, next: NextFunction) => {
@@ -24,6 +24,13 @@ export const isNotAuthenticated = (req: Request, res: Response, next: NextFuncti
         return next();
     }
 
-    res.redirect("/home");
+    return res.redirect("/home");
 }
 
+export const isEmpregado = (req: Request, res: Response, next: NextFunction) => {
+    if(req.user.empregado){
+        return next()
+    }
+
+    return res.redirect("/home")
+}

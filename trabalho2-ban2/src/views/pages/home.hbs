@@ -1,1 +1,32 @@
-<h1>Ola Mundo</h1>
+<main class="main" style="max-width: 1200px">
+    <section class="descricao" id="desc">
+        <h2>
+            Se você está procurando por:
+        </h2>
+
+        <UL id="lista">
+            <li>Descanso</li>
+            <li>Qualidade</li>
+            <li>Conforto</li>
+        </UL>
+        <br>
+        <h3>
+            Aqui é o local ideal para você, explore as cidades e faça sua reserva!
+        </h3>
+
+        <form class="form" class="form" action="/procurar" method="post">
+            <div class="form-control">
+                <label for="cidades">Cidade</label>
+                <select name="cod_cidade" id="cidades">
+                    {{!-- <% for (cidade of cidades) { %>
+                        <option value="<%= cidade.cod_cidade %>">
+                            <%= cidade.nome %>
+                        </option>
+                        <% } %> --}}
+                </select>
+            </div>
+
+            <button type="submit">Procurar Hotéis</button>
+        </form>
+    </section>
+</main>

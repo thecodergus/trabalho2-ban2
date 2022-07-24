@@ -38,7 +38,7 @@ export const my_Strategy: any = new LocalStrategy((email: string, password: stri
     })
 })
 
-passport.serializeUser<any, any>((req, user, done) => {
+passport.serializeUser<any, any>((req: any, user: any, done: any) => {
     done(undefined, user)
 })
 passport.deserializeUser(async (id: any, done: any) => {
@@ -50,6 +50,9 @@ passport.deserializeUser(async (id: any, done: any) => {
                         path: "data.hotel_id",
                         select: "_id nome"
                     })
+                    // .populate({
+                    //     path: "data.hotel.cidade_id"
+                    // })
                     .lean()
         )
 })

@@ -31,6 +31,7 @@ class Login{
             })
         }
 
+        // Gambiarra
         req.body.username = await email
         req.body.password = await password
         passport.authenticate("local", (err: Error, user: IUsuario, info: IVerifyOptions) => {
@@ -126,6 +127,7 @@ class Login{
         try{
             await usuario.save()
 
+            // Gambiarra
             req.body.username = await email
             req.body.password = await password
             passport.authenticate("local", (err: Error, user: IUsuario, info: IVerifyOptions) => {

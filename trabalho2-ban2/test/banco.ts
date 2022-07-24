@@ -26,13 +26,13 @@ const random: number = Math.random() * 500000
 //         uf: "sc"
 //     }
 // }).then(e => console.log(e)).catch(err => console.error(err))
-// Hotel.create({
-//     nome: `Hotel Fumaça`,
-//     cidade: {
-//         nome: "São Paulo",
-//         uf: "sp"
-//     }
-// }).then(e => console.log(e)).catch(err => console.error(err))
+Hotel.create({
+    nome: `Hotel Fumaça`,
+    cidade: {
+        nome: "São Paulo2",
+        uf: "sp"
+    }
+}).then(e => console.log(e)).catch(err => console.error(err))
 
 // Usuario_Cliente.create({
 //     username: `guga.power${random}@hotmail.com`,
@@ -105,14 +105,14 @@ const random: number = Math.random() * 500000
 // }
 
 
-async function t(){
-    const u: any = await Usuario
-                            .findById("2fdd1e9c-c34a-4b8d-8ae2-bac17785843f")
-                            .populate({
-                                path: "data.hotel_id",
-                                select: "_id nome"
-                            })
-    console.log(u)
-}
+// async function t(){
+//     const u: any = await Usuario
+//                             .findById("2fdd1e9c-c34a-4b8d-8ae2-bac17785843f")
+//                             .populate({
+//                                 path: "data.hotel_id",
+//                                 select: "_id nome"
+//                             })
+//     console.log(u)
+// }
 
-t()
+// t()
