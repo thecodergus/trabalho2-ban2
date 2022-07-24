@@ -6,13 +6,6 @@ const route = Router()
 
 route.get("/login", controller.login_screen)
 
-// route.post("/login", passport.authenticate("local", {
-//     failureRedirect: "login",
-//     successRedirect: "/home",
-//     failureFlash: true
-// }))
-
-// route.post("/login", (req: Request, res: Response) => res.redirect("/home"))
 route.post("/login", controller.login)
 
 route.get("/logout", controller.logout)

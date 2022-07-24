@@ -8,9 +8,6 @@ class Home{
     private catcher: Catcher = (err: Error, res: Res) => res.status(400).json({ err })
 
     public async home(req: Req, res: Res){
-        // this.get_nome_hoteis()
-        console.log(req.user)
-        // console.log(req.isAuthenticated())
         return res.render("home", {
             hoteis: await get_all_hotel_nome(),
             usuario: "Gustavo",

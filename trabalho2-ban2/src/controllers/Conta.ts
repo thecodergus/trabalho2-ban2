@@ -31,14 +31,9 @@ class Login{
             })
         }
 
-        // console.log(`1: email: ${email} password: ${password}`)
-
         req.body.username = await email
         req.body.password = await password
         passport.authenticate("local", (err: Error, user: IUsuario, info: IVerifyOptions) => {
-            // console.log(`2: email: ${email} password: ${password}`)
-            // console.log(user)
-            // console.log(info)
             if(err) next(err)
             if(!user){
                 res.redirect("/login")
@@ -66,7 +61,7 @@ class Login{
         })
     }
 
-    public async cadastro(req: Req, res: Res){
+    public async cadastro(req: Req, res: Res, next: Next){
         const {
             email,
             name,
@@ -130,7 +125,21 @@ class Login{
 
         try{
             await usuario.save()
-            return res.redirect("/home")
+
+            req.body.username = await email
+            req.body.password = await password
+            passport.authenticate("local", (err: Error, user: IUsuario, info: IVerifyOptions) => {
+                if (err) next(err)
+                if (!user) {
+                    res.redirect("/login")
+                }
+
+                req.logIn(user, err => {
+                    if (err) return next(err)
+                    return res.redirect("/home")
+                })
+            })(req, res, next) 
+            
             
         }catch(err: any){
             return res.render("cadastro", {
