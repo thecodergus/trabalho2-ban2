@@ -123,8 +123,8 @@ class Login{
             data: {
                 nome: name,
                 cpf,
-                telephone,
-                adress
+                telefone: telephone,
+                endereco: adress
             }
         })
 

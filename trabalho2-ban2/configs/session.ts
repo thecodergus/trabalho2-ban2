@@ -5,10 +5,10 @@ import { v4 as uuid } from "uuid"
 
 export default () => (
     session({
-        store: MongoStore.create({ 
-                mongoUrl: mongo_url,
-                dbName: "session" 
-            }),
+        // store: MongoStore.create({ 
+        //         mongoUrl: mongo_url,
+        //         dbName: "session" 
+        //     }),
         secret: "Bando_de_dados_2",
         genid: () => uuid(),
         resave: false,
