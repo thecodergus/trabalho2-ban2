@@ -14,11 +14,7 @@
 <nav>
     <ol class="categorias">       
         {{#if logged}}
-            {{#each hoteis}}
-            <li>
-                <a href="/hotel/{{this._id}}"> {{this.nome}} </a>
-            </li>
-            {{/each}}
+        
             {{#if user.empregado}}
                 <li>
                     <a href="/reservas"> Reservas </a>
@@ -26,13 +22,25 @@
                 <li>
                     <a href="/funcionario"> Funcionários </a>
                 </li>
-            {{/if}} 
-            <div class="login">
-                <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
-            </div>
+            {{else}}
+
+                {{#each hoteis}}
+                    <li>
+                        <a href="/hotel/{{this._id}}"> {{this.nome}} </a>
+                    </li>
+                {{/each}}
+
+            {{/if}}
+                        
+            {{#unless user.empregado}}
+                <div class="login">
+                    <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
+                </div>
+            {{/unless}}            
             <div class="cadastro">
                 <a href="/conta/logout">&nbsp Sair &nbsp</a>
             </div>
+
             {{else}}            
             <div class="login">
                 <a href="/conta/login">&nbsp Entrar &nbsp</a>
