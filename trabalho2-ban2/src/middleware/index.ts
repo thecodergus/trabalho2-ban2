@@ -18,3 +18,12 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
     }
     res.redirect("/login");
 }
+
+export const isNotAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+
+    res.redirect("/home");
+}
+

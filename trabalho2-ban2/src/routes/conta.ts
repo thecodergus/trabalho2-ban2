@@ -1,16 +1,17 @@
 import { Request, Response, Router } from "express";
 import { Conta as controller } from "../controllers"
 import passport from "passport";
+import { isNotAuthenticated, isAuthenticated } from "../middleware";
 
 const route = Router()
 
-route.get("/login", controller.login_screen)
+route.get("/login", isNotAuthenticated, controller.login_screen)
 
-route.post("/login", controller.login)
+route.post("/login", isNotAuthenticated, controller.login)
 
-route.get("/logout", controller.logout)
+route.get("/logout", isAuthenticated, controller.logout)
 
-route.get("/cadastro", controller.cadastro_screen)
-route.post("/cadastro", controller.cadastro)
+route.get("/cadastro", isNotAuthenticated, controller.cadastro_screen)
+route.post("/cadastro", isNotAuthenticated, controller.cadastro)
 
 export default route
