@@ -10,29 +10,29 @@ mongoose
     .then(() => console.log("Conectado ao mongo"))
     .catch(err => console.error(`Deu problema:\n${err}`))
 
-const random: number = Math.random() * 500000
+// const random: number = Math.random() * 500000
 
-Hotel.create({
-    nome: `Hotel Udesc`,
-    cidade: {
-        nome: "joinville",
-        uf: "sc"
-    }
-}).then(e => console.log(e)).catch(err => console.error(err))
-Hotel.create({
-    nome: `Hotel Grão Principe`,
-    cidade: {
-        nome: "Araquari",
-        uf: "sc"
-    }
-}).then(e => console.log(e)).catch(err => console.error(err))
-Hotel.create({
-    nome: `Hotel Fumaça`,
-    cidade: {
-        nome: "São Paulo",
-        uf: "sp"
-    }
-}).then(e => console.log(e)).catch(err => console.error(err))
+// Hotel.create({
+//     nome: `Hotel Udesc`,
+//     cidade: {
+//         nome: "joinville",
+//         uf: "sc"
+//     }
+// }).then(e => console.log(e)).catch(err => console.error(err))
+// Hotel.create({
+//     nome: `Hotel Grão Principe`,
+//     cidade: {
+//         nome: "Araquari",
+//         uf: "sc"
+//     }
+// }).then(e => console.log(e)).catch(err => console.error(err))
+// Hotel.create({
+//     nome: `Hotel Fumaça`,
+//     cidade: {
+//         nome: "São Paulo",
+//         uf: "sp"
+//     }
+// }).then(e => console.log(e)).catch(err => console.error(err))
 
 // Usuario_Cliente.create({
 //     username: `guga.power${random}@hotmail.com`,
@@ -50,7 +50,7 @@ Hotel.create({
 //     senha: "adm",
 //     empregado: true,
 //     data: {
-//         hotel_id: "2d28b6ad-fe60-4a58-9500-0be74c8556d9",
+//         hotel_id: "377477de-b03d-4748-b466-a3348982b633",
 //         nome: "Gustavo",
 //         endereco: "Rua Professor Schutzler",
 //         telefone: "992166025",
@@ -105,14 +105,14 @@ Hotel.create({
 // }
 
 
-// async function t(){
-//     const u: any = await Usuario
-//                             .findById("2fdd1e9c-c34a-4b8d-8ae2-bac17785843f")
-//                             .populate({
-//                                 path: "data.hotel_id",
-//                                 select: "_id nome"
-//                             })
-//     console.log(u)
-// }
+async function t(){
+    const u: any = await Usuario
+                        .findById("4b5493f3-1547-4d40-823d-4f699ce891c0")
+                            .populate({
+                                path: "data.hotel_id",
+                                select: "_id nome"
+                            })
+    console.log(u)
+}
 
-// t()
+t()

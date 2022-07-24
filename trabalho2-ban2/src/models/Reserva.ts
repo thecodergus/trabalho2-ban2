@@ -30,15 +30,15 @@ export const ReservaSchema: Schema<IReserva> = new Schema({
     },
     cama_extra: {
         type: Boolean,
-        // default: false
+        default: false
     },
     valor_total: {
         type: Number,
-        // default: 0
+        default: 0
     },
     valor_entrada: {
         type: Number,
-        // default: 0
+        default: 0
     },
     status: {
         type: String,

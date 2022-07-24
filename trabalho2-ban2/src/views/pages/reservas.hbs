@@ -1,0 +1,24 @@
+<main class="main-hotel" style="max-width: 800px; margin-left: auto; margin-right: auto">
+    {{#each reservas as |reserva index|}}
+        <div class="container">
+            <div class="header">
+                <h3>
+                    <form id="form-{{reserva._id}}" class="form" method="post">
+                        <input type="hidden" id="cod_reserva" name="cod_reserva"
+                            value="{{reserva._id}}">
+                        #{{reserva._id}} <br>
+                            Check-in: {{reserva.check_in}} <br>
+                                Check-out: {{reserva.check_out}} <br>
+                                    Hotel: {{reserva.hotel_id.nome}} <br>
+                                        Valor total: {{reserva.valor_total}}
+                                            Entrada: {{reserva.valor_entrada}}
+                                                <button type="submit"
+                                                    formaction="/reserva/aprovar/{{reserva._id}}">Aprovar</button>
+                                                <button type="submit"
+                                                    formaction="/reserva/rejeitar/{{reserva._id}}">Rejeitar</button>
+                    </form>
+                </h3>
+            </div>
+        </div>
+    {{/each}}
+</main>

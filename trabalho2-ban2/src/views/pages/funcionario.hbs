@@ -1,0 +1,53 @@
+<main class="main-hotel">
+    <form id="form" class="form" action="/funcionario" method="post">
+        <div class="form-control">
+            <label for="nome">Nome do funcionário</label>
+            <input type="text" id="nome" name="nome">
+            <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle"></i>
+            <small>Mensagem de erro</small>
+        </div>
+
+        <div class="form-control">
+            <label for="hotel">Hotel</label>
+            <select name="hotel" id="hotel">
+                {{#each hoteis}}
+                    <option value="{{this._id}}">
+                        {{this.nome}}
+                    </option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="funcao">Função</label>
+            <input type="text" id="funcao" name="funcao">
+            <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle"></i>
+            <small>Mensagem de erro</small>
+        </div>
+
+        <button type="submit">Cadastrar novo Funcionário</button>
+    </form>
+    {{#each funcionarios}}
+    <div class="container">
+        <div class="header">
+            <h3>
+                <form id="form-{{this._id}}" class="form" action="/funcionario/demitir" method="post">
+                    <input type="hidden" id="cod_funcionario" name="_id" value="{{this._id}}">
+                    {{this.none}}<br>
+                    {{#each this.funcao}}
+                        {{funcao}}
+                        {{this.data.hotel_id.nome}}
+                        <button>Demitir</button>
+                    {{#/each}}
+                </form>
+            </h3>
+        </div>
+    </div>
+    {{/each}}
+</main>
+
+<script type="text/javascript">
+    function demitirFuncionario(codigo)
+</script>
