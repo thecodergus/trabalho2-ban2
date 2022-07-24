@@ -31,7 +31,8 @@ app.engine(".hbs", engine({
     extname: ".hbs",
     defaultLayout: "main",
     layoutsDir: `${__dirname}/src/views/layouts/`,
-    partialsDir: `${__dirname}/src/views/partials/`
+    partialsDir: `${__dirname}/src/views/partials/`,
+    // handlebars: allowInsecurePrototypeAccess(Handlebars)
 }))
 app.set("view engine", ".hbs")
 app.set("views", "./src/views/pages")
@@ -41,7 +42,7 @@ passport.serializeUser<any, any>((req, user, done) => {
     done(undefined, user)
 })
 passport.deserializeUser((id: any, done: any) => {
-    Usuario.findById(id, (err: NativeError, user: IUsuario) => done(err, user))
+    Usuario.findById(id, (err: NativeError, user: IUsuario) => done(err, user.toJSON()))
 })
 passport.use(new LocalStrategy((email: string, password: string, done: any) => {
     Usuario.findOne({email: email.toLowerCase()}, async (err: NativeError, user: IUsuario) => {

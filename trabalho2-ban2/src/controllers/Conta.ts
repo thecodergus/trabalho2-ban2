@@ -31,7 +31,7 @@ class Login{
             })
         }
 
-        console.log(`1: email: ${email} password: ${password}`)
+        // console.log(`1: email: ${email} password: ${password}`)
 
         req.body.username = await email
         req.body.password = await password

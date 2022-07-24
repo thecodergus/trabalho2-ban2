@@ -4,16 +4,13 @@
         <h1>
             {{#if logged}}
                 Bem vindo,
-                {{!-- {{sesseion.username}} --}}
+                {{user.data.nome}}
             {{else}}
                 Rede de Hotéis Prime SC
             {{/if}}
-            {{logged}}
         </h1>
     </a>
 </header>
-{{user}}
-
 <nav>
     <ol class="categorias">
         {{!-- <% if (!loggedIn || usuario.tipo === 0) { %>
