@@ -12,24 +12,24 @@ mongoose
 
 const random: number = Math.random() * 500000
 
-// Hotel.create({
-//     nome: `Hotel Udesc`,
-//     cidade: {
-//         nome: "joinville",
-//         uf: "sc"
-//     }
-// }).then(e => console.log(e)).catch(err => console.error(err))
-// Hotel.create({
-//     nome: `Hotel Grão Principe`,
-//     cidade: {
-//         nome: "Araquari",
-//         uf: "sc"
-//     }
-// }).then(e => console.log(e)).catch(err => console.error(err))
+Hotel.create({
+    nome: `Hotel Udesc`,
+    cidade: {
+        nome: "joinville",
+        uf: "sc"
+    }
+}).then(e => console.log(e)).catch(err => console.error(err))
+Hotel.create({
+    nome: `Hotel Grão Principe`,
+    cidade: {
+        nome: "Araquari",
+        uf: "sc"
+    }
+}).then(e => console.log(e)).catch(err => console.error(err))
 Hotel.create({
     nome: `Hotel Fumaça`,
     cidade: {
-        nome: "São Paulo2",
+        nome: "São Paulo",
         uf: "sp"
     }
 }).then(e => console.log(e)).catch(err => console.error(err))

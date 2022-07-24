@@ -2,7 +2,7 @@ import { Schema, models, model } from "mongoose"
 import Cidade, {CidadeSchema} from "./Cidade"
 import {EmpregadoSchema} from "./Empregado"
 import {ClienteSchema} from "./Cliente"
-import type { IHotel } from "../types"
+import type { ICidade, IHotel } from "../types"
 import { v4 as uuid } from "uuid"
 import { QuartoSchema } from "./Quarto"
 
@@ -53,12 +53,16 @@ HotelSchema.pre("save", async function save(next: any): Promise<void> {
     })
 
     if(!cidade){
-        const create_cidade = await Cidade.create({
-            nome: this.cidade.nome,
-            uf: this.cidade.uf
-        })
+        try{
+            const create_cidade: ICidade = await Cidade.create({
+                nome: this.cidade.nome,
+                uf: this.cidade.uf
+            })
 
-        this.cidade = await create_cidade
+            this.cidade = await create_cidade
+        }catch(err: any){
+            return next()
+        }
     }else{
         this.cidade = await cidade
     }
