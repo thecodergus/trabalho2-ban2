@@ -15,8 +15,3 @@ export const get_all_cidades = async () => {
     return await Cidade.find().lean() || {}
 }
 
-export const fornecer_parametros_comuns = (req: Request, res: Response, next: NextFunction) => {
-    res.locals.user = req.user
-    res.locals.logged = req.isAuthenticated()
-    return next()
-}

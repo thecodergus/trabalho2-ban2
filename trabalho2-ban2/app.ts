@@ -6,8 +6,7 @@ import Routes from "./src/routes"
 import path from "path"
 import { mongoose, session} from "./configs"
 import passport from "./configs/passport"
-import { IUsuario, IEmpregado, ICliente } from "types"
-import { fornecer_parametros_comuns } from "./src/services"
+import { fornecer_parametros_comuns, isAuthenticated, isEmpregado } from "./src/middleware"
 
 
 const app = express()
@@ -31,7 +30,6 @@ app.engine(".hbs", engine({
     defaultLayout: "main",
     layoutsDir: `${__dirname}/src/views/layouts/`,
     partialsDir: `${__dirname}/src/views/partials/`,
-    // handlebars: allowInsecurePrototypeAccess(Handlebars)
 }))
 app.set("view engine", ".hbs")
 app.set("views", "./src/views/pages")
@@ -43,7 +41,8 @@ app.use(fornecer_parametros_comuns)
 
 // Routes
 app.use("/hotel", Routes.Hotel)
-app.use("/conta", Routes.Conta)
+app.use("/conta", [isAuthenticated], Routes.Conta)
+app.use("/administracao", [isAuthenticated, isEmpregado], Routes.Administracao)
 app.use(Routes.Home)
 
 // Start server

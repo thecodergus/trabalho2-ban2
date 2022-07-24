@@ -1,5 +1,5 @@
 <main class="main-hotel">
-    <form id="form" class="form" action="/funcionario" method="post">
+    <form id="form" class="form" action="administracao/funcionario" method="post">
         <div class="form-control">
             <label for="nome">Nome do funcionário</label>
             <input type="text" id="nome" name="nome">
@@ -33,7 +33,7 @@
     <div class="container">
         <div class="header">
             <h3>
-                <form id="form-{{this._id}}" class="form" action="/funcionario/demitir" method="post">
+                <form id="form-{{this._id}}" class="form" action="administracao/funcionario/demitir" method="post">
                     <input type="hidden" id="cod_funcionario" name="_id" value="{{this._id}}">
                     {{this.none}}<br>
                     {{#each this.funcao}}

@@ -34,3 +34,9 @@ export const isEmpregado = (req: Request, res: Response, next: NextFunction) => 
 
     return res.redirect("/home")
 }
+
+export const fornecer_parametros_comuns = (req: Request, res: Response, next: NextFunction) => {
+    res.locals.user = req.user
+    res.locals.logged = req.isAuthenticated()
+    return next()
+}

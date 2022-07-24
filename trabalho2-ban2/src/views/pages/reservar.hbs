@@ -3,9 +3,9 @@
         <div class="form-control">
             <label for="hotel">Hotel</label>
             <select name="hotel" id="hotel" onchange="onChangeHotel()">
-                {{#eachn hoteis}}
-                    <option value="{{this._id}}">                            
-                        {{this.nome}}
+                {{#eachn hoteis |hotel|}}
+                    <option value="{{hotel._id}}">                            
+                        {{hotel.nome}}
                     </option>
                 {{/each}}
             </select>
@@ -21,19 +21,19 @@
             <input type="date" name="date_checkout" id="date_checkout">
         </div>
 
-        {{!-- <div class="form-control">
+        <div class="form-control">
             <label for="cod_quarto">Quarto</label>
             <select name="cod_quarto" id="cod_quarto">
-                <% for (const quarto of quartos) { %>
+                {{!-- <% for (const quarto of quartos) { %>
                     <option value="<%= quarto.cod_quarto %>">
                         <%= quarto.tipo_quarto==0 ? 'single' : quarto.tipo_quarto==1 ? 'duplo' : quarto.tipo_quarto==2
                             ? 'casal' : 'suíte' %>
                             &nbsp;
                             R$ <%= quarto.pernoite %>/dia
                     </option>
-                    <% } %>
+                    <% } %> --}}
             </select>
-        </div> --}}
+        </div>
 
         <div class="form-control">
             <label for="cama_extra">Cama Extra</label>
