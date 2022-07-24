@@ -1,8 +1,10 @@
 import { Router } from "express";
 
+import {Hotel as controller} from "../controllers"
+
 
 const route = Router()
 
-route.get("/", (req, res) => res.send("CU"))
+route.get("/:id", controller.hotel_page)
 
 export default route

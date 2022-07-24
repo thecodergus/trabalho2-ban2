@@ -7,6 +7,7 @@ import path from "path"
 import { mongoose, session} from "./configs"
 import passport from "./configs/passport"
 import { IUsuario, IEmpregado, ICliente } from "types"
+import { fornecer_parametros_comuns } from "./src/services"
 
 
 const app = express()
@@ -38,10 +39,7 @@ app.set("views", "./src/views/pages")
 // Passport
 app.use(passport.initialize())
 app.use(passport.session())
-app.use((req: Request, res: Response, next: NextFunction) => {
-    res.locals.user = req.user
-    next()
-})
+app.use(fornecer_parametros_comuns)
 
 // Routes
 app.use("/hotel", Routes.Hotel)

@@ -10,9 +10,6 @@ class Home{
     public async home(req: Req, res: Res){
         return res.render("home", {
             hoteis: await get_all_hotel_nome(),
-            usuario: "Gustavo",
-            user: await req.user,
-            logged: await req.isAuthenticated(),
             cidades: await get_all_cidades()
         })
     }
