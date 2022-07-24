@@ -1,5 +1,5 @@
 import "dotenv/config"
-import express, { NextFunction, Request, Response } from "express"
+import express from "express"
 import { engine } from "express-handlebars"
 import cookieParser from "cookie-parser"
 import Routes from "./src/routes"
@@ -41,7 +41,7 @@ app.use(fornecer_parametros_comuns)
 
 // Routes
 app.use("/hotel", Routes.Hotel)
-app.use("/conta", [isAuthenticated], Routes.Conta)
+app.use("/conta", Routes.Conta)
 app.use("/administracao", [isAuthenticated, isEmpregado], Routes.Administracao)
 app.use(Routes.Home)
 

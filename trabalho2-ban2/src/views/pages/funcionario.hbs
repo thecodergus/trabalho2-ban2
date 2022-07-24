@@ -11,9 +11,9 @@
         <div class="form-control">
             <label for="hotel">Hotel</label>
             <select name="hotel" id="hotel">
-                {{#each hoteis}}
-                    <option value="{{this._id}}">
-                        {{this.nome}}
+                {{#each hoteis as |hotel index|}}
+                    <option value="{{hotel._id}}">
+                        {{hotel.nome}}
                     </option>
                 {{/each}}
             </select>
@@ -29,18 +29,18 @@
 
         <button type="submit">Cadastrar novo Funcionário</button>
     </form>
-    {{#each funcionarios}}
+    {{#each funcionarios as |funcionario index1|}}
     <div class="container">
         <div class="header">
             <h3>
-                <form id="form-{{this._id}}" class="form" action="administracao/funcionario/demitir" method="post">
-                    <input type="hidden" id="cod_funcionario" name="_id" value="{{this._id}}">
-                    {{this.none}}<br>
-                    {{#each this.funcao}}
-                        {{funcao}}
-                        {{this.data.hotel_id.nome}}
+                <form id="form-{{funcionario._id}}" class="form" action="administracao/funcionario/demitir" method="post">
+                    <input type="hidden" id="cod_funcionario" name="_id" value="{{funcionario._id}}">
+                    {{funcionario.nome}}<br>
+                    {{#each funcionario.funcao as |f index2|}}
+                        {{f}}
+                        {{funcionario.data.hotel_id.nome}}
                         <button>Demitir</button>
-                    {{#/each}}
+                    {{/each}}
                 </form>
             </h3>
         </div>

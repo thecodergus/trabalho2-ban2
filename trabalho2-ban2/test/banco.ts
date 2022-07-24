@@ -105,14 +105,24 @@ mongoose
 // }
 
 
-async function t(){
-    const u: any = await Usuario
-                        .findById("4b5493f3-1547-4d40-823d-4f699ce891c0")
-                            .populate({
-                                path: "data.hotel_id",
-                                select: "_id nome"
-                            })
-    console.log(u)
+// async function t(){
+//     const u: any = await Usuario
+//                         .findById("4b5493f3-1547-4d40-823d-4f699ce891c0")
+//                             .populate({
+//                                 path: "data.hotel_id",
+//                                 select: "_id nome"
+//                             })
+//     console.log(u)
+// }
+
+// t()
+
+async function tt(){
+    // const uu: any[] = await (await Usuario.find().lean() as any[]).map((f: any) => f.data)
+    const uu = await Usuario.find().select({data: true}).lean()
+
+
+    console.log(uu)
 }
 
-t()
+tt()
