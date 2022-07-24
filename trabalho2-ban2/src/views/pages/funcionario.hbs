@@ -57,13 +57,13 @@
             <h3>
                 <form id="form-{{funcionario._id}}" class="form" action="funcionario/demitir" method="post">
                     <input type="hidden" id="cod_funcionario" name="_id" value="{{funcionario._id}}">
-                    {{funcionario.nome}}<br>
+                    {{funcionario.data.nome}}<br>
                     Funções: 
-                    {{#each funcionario.funcao as |f index2|}}
+                    {{#each funcionario.data.funcao as |f index2|}}
                         {{f}},
                     {{/each}}
                     <br>
-                    Hotel: {{funcionario.hotel_id.nome}}
+                    Hotel: {{funcionario.data.hotel_id.nome}}
                     <button>Demitir</button>
                 </form>
             </h3>

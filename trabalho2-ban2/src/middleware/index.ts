@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import { IUsuario } from "../types";
+import { get_all_hotel_nome } from "../services";
 
 export const verificar_login = async (req: Request, res: Response, next: NextFunction) => {
     if(await req.isAuthenticated()){
@@ -38,5 +39,11 @@ export const isEmpregado = (req: Request, res: Response, next: NextFunction) => 
 export const fornecer_parametros_comuns = (req: Request, res: Response, next: NextFunction) => {
     res.locals.user = req.user
     res.locals.logged = req.isAuthenticated()
+    return next()
+}
+
+export const fornecer_hoteis = async (req: Request, res: Response, next: NextFunction) => {
+    res.locals.hoteis = await get_all_hotel_nome()
+
     return next()
 }
