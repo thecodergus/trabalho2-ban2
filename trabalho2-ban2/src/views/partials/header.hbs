@@ -12,32 +12,28 @@
     </a>
 </header>
 <nav>
-    <ol class="categorias">
-        {{!-- <% if (!loggedIn || usuario.tipo === 0) { %>
-            <% for (const hotel of hotelList) { %>
-                
-        <% } else { %>
-            <li> <a href="/reservas"> Reservas </a> </li>
-            <li> <a href="/funcionario"> Funcionários </a> </li>
-        <% } %> --}}
-
+    <ol class="categorias">       
         {{#if logged}}
+            {{#each hoteis}}
+            <li>
+                <a href="/hotel/{{this._id}}"> {{this.nome}} </a>
+            </li>
+            {{/each}}
             {{#if user.empregado}}
                 <li>
-                    <a href="/hotel/teste"> Hotel teste </a>
-                    {{!-- <a href="/hotel/<%= hotel.cod_interno %>"> <%= hotel.nome %> </a> --}}
+                    <a href="/reservas"> Reservas </a>
                 </li>
-
-            {{else}}
-                <div class="login">
-                    <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
-                </div>
-                <div class="cadastro">
-                    <a href="/conta/logout">&nbsp Sair &nbsp</a>
-                </div>            
-            {{/if}}            
-            {{else}}
-            
+                <li>
+                    <a href="/funcionario"> Funcionários </a>
+                </li>
+            {{/if}} 
+            <div class="login">
+                <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
+            </div>
+            <div class="cadastro">
+                <a href="/conta/logout">&nbsp Sair &nbsp</a>
+            </div>
+            {{else}}            
             <div class="login">
                 <a href="/conta/login">&nbsp Entrar &nbsp</a>
             </div>

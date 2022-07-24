@@ -41,8 +41,17 @@ export const my_Strategy: any = new LocalStrategy((email: string, password: stri
 passport.serializeUser<any, any>((req, user, done) => {
     done(undefined, user)
 })
-passport.deserializeUser((id: any, done: any) => {
-    Usuario.findById(id, (err: NativeError, user: IUsuario) => done(err, user.toJSON()))
+passport.deserializeUser(async (id: any, done: any) => {
+    done(
+            undefined,
+            await Usuario
+                    .findById(id)
+                    .populate({
+                        path: "data.hotel_id",
+                        select: "_id nome"
+                    })
+                    .lean()
+        )
 })
 passport.use(my_Strategy)
 
