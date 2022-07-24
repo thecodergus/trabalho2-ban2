@@ -18,11 +18,11 @@
             <div class="form-control">
                 <label for="cidades">Cidade</label>
                 <select name="cod_cidade" id="cidades">
-                    {{!-- <% for (cidade of cidades) { %>
-                        <option value="<%= cidade.cod_cidade %>">
-                            <%= cidade.nome %>
-                        </option>
-                        <% } %> --}}
+                        {{#each cidades}}
+                            <option value="{{this._id}}">
+                                {{this.nome}} - {{this.uf}}
+                            </option>
+                        {{/each}}
                 </select>
             </div>
 

@@ -1,4 +1,4 @@
-import { Hotel, Usuario } from "../models"
+import { Cidade, Hotel, Usuario } from "../models"
 // import {UsuarioSchema} from "../models/Usuario"
 // import { ClienteSchema } from "../models/Cliente"
 import type { IUsuario } from "types"
@@ -10,6 +10,6 @@ export const get_all_hotel_nome = async () => {
     }).lean() || {}
 }
 
-export const inserir_cliente = async (data: any) => {
-
+export const get_all_cidades = async () => {
+    return await Cidade.find().lean() || {}
 }

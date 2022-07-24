@@ -1,7 +1,7 @@
 import type {Request as Req, Response as Res} from "express"
 import type {Catcher} from "../types"
 
-import { get_all_hotel_nome } from "../services"
+import { get_all_cidades, get_all_hotel_nome } from "../services"
 
 class Home{
 
@@ -12,7 +12,8 @@ class Home{
             hoteis: await get_all_hotel_nome(),
             usuario: "Gustavo",
             user: await req.user,
-            logged: await req.isAuthenticated()
+            logged: await req.isAuthenticated(),
+            cidades: await get_all_cidades()
         })
     }
 
