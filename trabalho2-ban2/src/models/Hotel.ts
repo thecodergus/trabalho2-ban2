@@ -30,10 +30,7 @@ export const HotelSchema: Schema<IHotel> = new Schema({
         // ref: "Cidade"
         // required: true
     },
-    quartos: {
-        type: [QuartoSchema],
-        default: []
-    },
+    quartos: [QuartoSchema],
     estadias: {
         type: [String],
         default: [],
@@ -69,7 +66,6 @@ HotelSchema.pre("save", async function save(next: any): Promise<void> {
 
     return next()
 })
-
 
 const Hotel = models.Hotel || model<IHotel>("Hotel", HotelSchema)
 

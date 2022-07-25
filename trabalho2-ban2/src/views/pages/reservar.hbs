@@ -1,8 +1,12 @@
 <main class="main-hotel" style="max-width: 800px; margin-left: auto; margin-right: auto">
+    {{>error}}
     <form id="busca-data" class="form" action="/reservar" method="post">
         <div class="form-control">
             <label for="hotel">Hotel</label>
             <select name="hotel" id="hotel">
+                <option value="">
+                    Selecione um Hotel
+                </option>
                 {{#each hoteis as |hotel|}}
                     <option value="{{hotel._id}}">                            
                         {{hotel.nome}}

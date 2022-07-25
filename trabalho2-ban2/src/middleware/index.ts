@@ -30,7 +30,7 @@ export const isNotAuthenticated = (req: Request, res: Response, next: NextFuncti
 }
 
 export const isEmpregado = (req: Request, res: Response, next: NextFunction) => {
-    if(req.user.empregado){
+    if((req.user as any).empregado){
         return next()
     }
 

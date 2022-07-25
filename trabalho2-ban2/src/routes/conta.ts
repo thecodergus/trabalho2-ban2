@@ -3,15 +3,17 @@ import { Conta as controller } from "../controllers"
 import passport from "passport";
 import { isNotAuthenticated, isAuthenticated } from "../middleware";
 
-const route = Router()
+const router = Router()
 
-route.get("/login", [isNotAuthenticated], controller.login_screen)
+router.get("/login", [isNotAuthenticated], controller.login_screen)
 
-route.post("/login", [isNotAuthenticated], controller.login)
+router.post("/login", [isNotAuthenticated], controller.login)
 
-route.get("/logout", [isAuthenticated], controller.logout)
+router.get("/logout", [isAuthenticated], controller.logout)
 
-route.get("/cadastro", [isNotAuthenticated], controller.cadastro_screen)
-route.post("/cadastro", [isNotAuthenticated], controller.cadastro)
+router.get("/cadastro", [isNotAuthenticated], controller.cadastro_screen)
+router.post("/cadastro", [isNotAuthenticated], controller.cadastro)
 
-export default route
+router.get("/conta/reservas", [isAuthenticated], (req: Request, res: Response) => res.send("OI"))
+
+export default router

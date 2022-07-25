@@ -19,8 +19,7 @@ export const ReservaSchema: Schema<IReserva> = new Schema({
         ref: "Usuario"
     },
     quarto: {
-        type: QuartoSchema,
-        // required: true
+        type: QuartoSchema
     },
     check_in: Date,
     check_out: Date,

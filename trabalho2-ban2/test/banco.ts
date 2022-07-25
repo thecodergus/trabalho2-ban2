@@ -1,4 +1,4 @@
-import { Hotel} from "../src/models"
+import { Hotel, Reserva} from "../src/models"
 import mongoose from "mongoose"
 import { Usuario_Cliente, Usuario_Empregado, Usuario } from "../src/models"
 import { IUsuario } from "types"
@@ -10,116 +10,116 @@ mongoose
     .then(() => console.log("Conectado ao mongo"))
     .catch(err => console.error(`Deu problema:\n${err}`))
 
-Hotel.create({
-    nome: `Hotel Udesc`,
-    cidade: {
-        nome: "joinville",
-        uf: "sc"
-    },
-    quartos: [
-        {
-            tipo: "single",
-            numero: 66,
-            andar: 0,
-            preco_pernoite: 75.90
-        },
-        {
-            tipo: "duplo",
-            numero: 56,
-            andar: 1,
-            preco_pernoite: 120
-        },
-        {
-            tipo: "casal",
-            numero: 46,
-            andar: 2,
-            preco_pernoite: 190.60
-        },
-        {
-            tipo: "suite",
-            numero: 36,
-            andar: 3,
-            preco_pernoite: 315
-        },
-]
-}).then(e => console.log(e)).catch(err => console.error(err))
-Hotel.create({
-    nome: `Hotel Grão Principe`,
-    cidade: {
-        nome: "Araquari",
-        uf: "sc"
-    },
-    quartos: [
-        {
-            tipo: "single",
-            numero: 66,
-            andar: 0,
-            preco_pernoite: 175.90
-        },
-        {
-            tipo: "duplo",
-            numero: 56,
-            andar: 1,
-            preco_pernoite: 1120
-        },
-        {
-            tipo: "casal",
-            numero: 46,
-            andar: 2,
-            preco_pernoite: 1190.60
-        },
-        {
-            tipo: "suite",
-            numero: 36,
-            andar: 3,
-            preco_pernoite: 2315
-        },
-    ]
-}).then(e => console.log(e)).catch(err => console.error(err))
-Hotel.create({
-    nome: `Hotel Fumaça`,
-    cidade: {
-        nome: "São Paulo",
-        uf: "sp"
-    },
-    quartos: [
-        {
-            tipo: "single",
-            numero: 66,
-            andar: 0,
-            preco_pernoite: 175.90
-        },
-        {
-            tipo: "duplo",
-            numero: 56,
-            andar: 1,
-            preco_pernoite: 1120
-        },
-        {
-            tipo: "casal",
-            numero: 46,
-            andar: 2,
-            preco_pernoite: 1190.60
-        },
-        {
-            tipo: "suite",
-            numero: 36,
-            andar: 3,
-            preco_pernoite: 3115
-        },
-    ]
-}).then(e => console.log(e)).catch(err => console.error(err))
+// Hotel.create({
+//     nome: `Hotel Udesc`,
+//     cidade: {
+//         nome: "joinville",
+//         uf: "sc"
+//     },
+//     quartos: [
+//         {
+//             tipo: "single",
+//             numero: 66,
+//             andar: 0,
+//             preco_pernoite: 75.90
+//         },
+//         {
+//             tipo: "duplo",
+//             numero: 56,
+//             andar: 1,
+//             preco_pernoite: 120
+//         },
+//         {
+//             tipo: "casal",
+//             numero: 46,
+//             andar: 2,
+//             preco_pernoite: 190.60
+//         },
+//         {
+//             tipo: "suite",
+//             numero: 36,
+//             andar: 3,
+//             preco_pernoite: 315
+//         },
+// ]
+// }).then(e => console.log(e)).catch(err => console.error(err))
+// Hotel.create({
+//     nome: `Hotel Grão Principe`,
+//     cidade: {
+//         nome: "Araquari",
+//         uf: "sc"
+//     },
+//     quartos: [
+//         {
+//             tipo: "single",
+//             numero: 66,
+//             andar: 0,
+//             preco_pernoite: 175.90
+//         },
+//         {
+//             tipo: "duplo",
+//             numero: 56,
+//             andar: 1,
+//             preco_pernoite: 1120
+//         },
+//         {
+//             tipo: "casal",
+//             numero: 46,
+//             andar: 2,
+//             preco_pernoite: 1190.60
+//         },
+//         {
+//             tipo: "suite",
+//             numero: 36,
+//             andar: 3,
+//             preco_pernoite: 2315
+//         },
+//     ]
+// }).then(e => console.log(e)).catch(err => console.error(err))
+// Hotel.create({
+//     nome: `Hotel Fumaça`,
+//     cidade: {
+//         nome: "São Paulo",
+//         uf: "sp"
+//     },
+//     quartos: [
+//         {
+//             tipo: "single",
+//             numero: 66,
+//             andar: 0,
+//             preco_pernoite: 175.90
+//         },
+//         {
+//             tipo: "duplo",
+//             numero: 56,
+//             andar: 1,
+//             preco_pernoite: 1120
+//         },
+//         {
+//             tipo: "casal",
+//             numero: 46,
+//             andar: 2,
+//             preco_pernoite: 1190.60
+//         },
+//         {
+//             tipo: "suite",
+//             numero: 36,
+//             andar: 3,
+//             preco_pernoite: 3115
+//         },
+//     ]
+// }).then(e => console.log(e)).catch(err => console.error(err))
 
-Usuario_Cliente.create({
-    username: `guga.power@hotmail.com`,
-    password: "lobo",
-    data: {
-        nome: "Gustavo",
-        cpf: "10865163979",
-        endereco: "Rua Professor Schutzler",
-        telefone: "992166025"
-    }
-}).then(r => console.log(r)).catch(err => console.error(err))
+// Usuario_Cliente.create({
+//     username: `guga.power@hotmail.com`,
+//     password: "lobo",
+//     data: {
+//         nome: "Gustavo",
+//         cpf: "10865163979",
+//         endereco: "Rua Professor Schutzler",
+//         telefone: "992166025"
+//     }
+// }).then(r => console.log(r)).catch(err => console.error(err))
 
 // Usuario_Empregado.create({
 //     email: `adm@hotel.com`,
@@ -193,12 +193,17 @@ Usuario_Cliente.create({
 
 // t()
 
-async function tt(){
-    // const uu: any[] = await (await Usuario.find().lean() as any[]).map((f: any) => f.data)
-    const uu = await Usuario.find().select({data: true}).lean()
+// async function tt(){
+//     // const uu: any[] = await (await Usuario.find().lean() as any[]).map((f: any) => f.data)
+//     const uu = await Usuario.find().select({data: true}).lean()
 
 
-    console.log(uu)
-}
+//     console.log(uu)
+// }
 
-tt()
+// tt()
+
+
+Reserva.create({
+    quarto: "323fe82f-aa21-4dfa-b071-c6bcb0aaa675"
+})
