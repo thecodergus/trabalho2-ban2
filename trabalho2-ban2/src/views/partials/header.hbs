@@ -22,6 +22,9 @@
                 <li>
                     <a href="/administracao/funcionario"> Funcionários </a>
                 </li>
+                {{!-- <li>
+                    <a href="/administracao/quartos"> Quartos </a>
+                </li> --}}
             {{else}}
 
                 {{#each hoteis}}
@@ -29,7 +32,9 @@
                         <a href="/hotel/{{this._id}}"> {{this.nome}} </a>
                     </li>
                 {{/each}}
-
+                <li>
+                    <a href="/reservar">Reservar</a>
+                </li>
             {{/if}}
                         
             {{#unless user.empregado}}

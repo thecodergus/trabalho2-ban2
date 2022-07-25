@@ -6,7 +6,7 @@ import Routes from "./src/routes"
 import path from "path"
 import { mongoose, session} from "./configs"
 import passport from "./configs/passport"
-import { fornecer_parametros_comuns, isAuthenticated, isEmpregado } from "./src/middleware"
+import { fornecer_parametros_comuns, isAuthenticated, isEmpregado, fornecer_hoteis } from "./src/middleware"
 
 
 const app = express()
@@ -40,10 +40,10 @@ app.use(passport.session())
 app.use(fornecer_parametros_comuns)
 
 // Routes
-app.use("/hotel", Routes.Hotel)
-app.use("/conta", Routes.Conta)
+app.use("/hotel", [isAuthenticated, fornecer_hoteis], Routes.Hotel)
+app.use("/conta", [fornecer_hoteis], Routes.Conta)
 app.use("/administracao", [isAuthenticated, isEmpregado], Routes.Administracao)
-app.use(Routes.Home)
+app.use([fornecer_hoteis], Routes.Home)
 
 // Start server
 app.listen(port, () => console.log("Server ON"))

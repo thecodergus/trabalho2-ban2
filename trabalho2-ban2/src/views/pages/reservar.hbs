@@ -2,8 +2,8 @@
     <form id="busca-data" class="form" action="/reservar" method="post">
         <div class="form-control">
             <label for="hotel">Hotel</label>
-            <select name="hotel" id="hotel" onchange="onChangeHotel()">
-                {{#eachn hoteis |hotel|}}
+            <select name="hotel" id="hotel">
+                {{#each hoteis as |hotel|}}
                     <option value="{{hotel._id}}">                            
                         {{hotel.nome}}
                     </option>
@@ -23,15 +23,19 @@
 
         <div class="form-control">
             <label for="cod_quarto">Quarto</label>
+                
             <select name="cod_quarto" id="cod_quarto">
-                {{!-- <% for (const quarto of quartos) { %>
-                    <option value="<%= quarto.cod_quarto %>">
-                        <%= quarto.tipo_quarto==0 ? 'single' : quarto.tipo_quarto==1 ? 'duplo' : quarto.tipo_quarto==2
-                            ? 'casal' : 'suíte' %>
-                            &nbsp;
-                            R$ <%= quarto.pernoite %>/dia
-                    </option>
-                    <% } %> --}}
+                <option value="">
+                    Selecionar quarto
+                </option>
+                {{#each hoteis as |hotel index1|}}
+                    {{#each hotel.quartos as |quarto index2|}}
+                        <option id="option_quarto" value="{{quarto._id}}" data-hotel="{{hotel._id}}">
+                            {{quarto.tipo}}<br>
+                            R$ {{quarto.preco_pernoite}}
+                        </option>
+                    {{/each}}
+                {{/each}}
             </select>
         </div>
 

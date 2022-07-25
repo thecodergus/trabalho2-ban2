@@ -49,11 +49,7 @@ passport.deserializeUser(async (id: any, done: any) => {
                     .populate({
                         path: "data.hotel_id",
                         select: "_id nome"
-                    })
-                    // .populate({
-                    //     path: "data.hotel.cidade_id"
-                    // })
-                    .lean()
+                    }).lean()
         )
 })
 passport.use(my_Strategy)
