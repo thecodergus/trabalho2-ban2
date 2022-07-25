@@ -1,5 +1,5 @@
 import type { Request as Req, Response as Res } from "express"
-import { Usuario_Empregado } from "../models"
+import { Reserva, Usuario_Empregado } from "../models"
 import { get_all_hotel_nome } from "../services"
 import validator from "validator"
 
@@ -62,7 +62,7 @@ class Administracao{
                 }
             })
 
-            return res.redirect("funcionario")
+            return res.redirect("/funcionario")
 
         }catch(e: any){
             return res.render("funcionario", {
@@ -88,6 +88,54 @@ class Administracao{
                 error: {
                     title: "Error",
                     message: "Algum problema ao demitir o funcionario"
+                }
+            })
+        }
+    }
+
+    public async reservas_page(req: Req, res: Res){
+        return res.render("reservas")
+    }
+
+    public async aprovar_reserva(req: Req, res: Res){
+        const { cod_reserva } = req.body
+
+        try{
+            await Reserva.updateOne({
+                _id: cod_reserva,
+                status: "validado"
+            })
+
+            return res.redirect("/administracao/reservas")
+
+        }catch(er: any){
+            return res.render("reservas", {
+                error:{
+                    title: "Error",
+                    message: "Aconteceu algo ao aprovar reserva"
+
+                }
+            })
+        }
+    }
+    
+    public async reprovar_reserva(req: Req, res: Res){
+        const { cod_reserva } = req.body
+
+        try {
+            await Reserva.updateOne({
+                _id: cod_reserva,
+                status: "recusado"
+            })
+
+            return res.redirect("/administracao/reservas")
+
+        } catch (er: any) {
+            return res.render("reservas", {
+                error: {
+                    title: "Error",
+                    message: "Aconteceu algo ao aprovar reserva"
+
                 }
             })
         }

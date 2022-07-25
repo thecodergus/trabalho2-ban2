@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import { IUsuario } from "../types";
 import { get_all_hotel_nome } from "../services";
+import {Reserva} from "../models"
 
 export const verificar_login = async (req: Request, res: Response, next: NextFunction) => {
     if(await req.isAuthenticated()){
@@ -44,6 +45,12 @@ export const fornecer_parametros_comuns = (req: Request, res: Response, next: Ne
 
 export const fornecer_hoteis = async (req: Request, res: Response, next: NextFunction) => {
     res.locals.hoteis = await get_all_hotel_nome()
+
+    return next()
+}
+
+export const fornecer_reservas = async (req: Request, res: Response, next: NextFunction) => {
+    res.locals.reservas = await Reserva.find().populate({ path: "hotel_id", select: "nome" }).lean()
 
     return next()
 }
