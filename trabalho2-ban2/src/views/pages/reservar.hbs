@@ -1,0 +1,53 @@
+<main class="main-hotel" style="max-width: 800px; margin-left: auto; margin-right: auto">
+    {{>error}}
+    <form id="busca-data" class="form" action="/reservar" method="post">
+        <div class="form-control">
+            <label for="hotel">Hotel</label>
+            <select name="hotel" id="hotel">
+                <option value="">
+                    Selecione um Hotel
+                </option>
+                {{#each hoteis as |hotel|}}
+                    <option value="{{hotel._id}}">                            
+                        {{hotel.nome}}
+                    </option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="date_checkin">Data de check-in</label>
+            <input type="date" name="date_checkin" id="date_checkin">
+        </div>
+
+        <div class="form-control">
+            <label for="date_checkout">Data de check-out</label>
+            <input type="date" name="date_checkout" id="date_checkout">
+        </div>
+
+        <div class="form-control">
+            <label for="cod_quarto">Quarto</label>
+                
+            <select name="cod_quarto" id="cod_quarto">
+                <option value="">
+                    Selecionar quarto
+                </option>
+                {{#each hoteis as |hotel index1|}}
+                    {{#each hotel.quartos as |quarto index2|}}
+                        <option id="option_quarto" value="{{quarto._id}}" data-hotel="{{hotel._id}}">
+                            {{quarto.tipo}}<br>
+                            R$ {{quarto.preco_pernoite}}
+                        </option>
+                    {{/each}}
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="cama_extra">Cama Extra</label>
+            <input type="checkbox" id="cama_extra" name="cama_extra">
+        </div>
+
+        <button type="submit">Reservar</button>
+    </form>
+</main>

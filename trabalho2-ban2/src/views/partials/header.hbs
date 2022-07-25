@@ -1,0 +1,58 @@
+ <header>
+    <a href="/" color="white">
+        </h3>
+        <h1>
+            {{#if logged}}
+                Bem vindo,
+                {{user.data.nome}}
+            {{else}}
+                Rede de Hotéis Prime SC
+            {{/if}}
+        </h1>
+    </a>
+</header>
+<nav>
+    <ol class="categorias">       
+        {{#if logged}}
+        
+            {{#if user.empregado}}
+                <li>
+                    <a href="/administracao/reservas"> Reservas </a>
+                </li>
+                <li>
+                    <a href="/administracao/funcionario"> Funcionários </a>
+                </li>
+                {{!-- <li>
+                    <a href="/administracao/quartos"> Quartos </a>
+                </li> --}}
+            {{else}}
+
+                {{#each hoteis}}
+                    <li>
+                        <a href="/hotel/{{this._id}}"> {{this.nome}} </a>
+                    </li>
+                {{/each}}
+                <li>
+                    <a href="/reservar">Reservar</a>
+                </li>
+            {{/if}}
+                        
+            {{#unless user.empregado}}
+                <div class="login">
+                    <a href="/estadias">&nbsp Minha Estadia &nbsp</a>
+                </div>
+            {{/unless}}            
+            <div class="cadastro">
+                <a href="/conta/logout">&nbsp Sair &nbsp</a>
+            </div>
+
+            {{else}}            
+            <div class="login">
+                <a href="/conta/login">&nbsp Entrar &nbsp</a>
+            </div>
+            <div class="cadastro">
+                <a href="/conta/cadastro">&nbsp Cadastre-se &nbsp</a>
+            </div>
+        {{/if}}
+    </ol>
+</nav>
