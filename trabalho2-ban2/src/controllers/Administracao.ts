@@ -101,10 +101,10 @@ class Administracao{
         const { cod_reserva } = req.body
 
         try{
-            await Reserva.updateOne({
-                _id: cod_reserva,
-                status: "validado"
-            })
+
+            const reserva = await Reserva.findById(cod_reserva)
+            reserva.status = await "validado"
+            await reserva.save()
 
             return res.redirect("/administracao/reservas")
 
@@ -123,10 +123,11 @@ class Administracao{
         const { cod_reserva } = req.body
 
         try {
-            await Reserva.updateOne({
-                _id: cod_reserva,
-                status: "recusado"
-            })
+            const reserva = await Reserva.findById(cod_reserva)
+            reserva.status = await "recusado"
+            await reserva.save()
+
+            return res.redirect("/administracao/reservas")
 
             return res.redirect("/administracao/reservas")
 
