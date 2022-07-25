@@ -11,7 +11,12 @@
                         Check-out: {{reserva.check_out}} <br>
                         Hotel: {{reserva.hotel_id.nome}} <br>
                         Valor total: {{reserva.valor_total}}
-                        Entrada: {{reserva.valor_entrada}}
+                        Entrada: {{reserva.valor_entrada}} <br>
+                        Status: {{reserva.status}}
+                        {{!-- {{#if user.empregado}}
+                            <button type="submit" formaction="/reserva/aprovar">Aprovar</button>
+                            <button type="submit" formaction="/reserva/rejeitar">Rejeitar</button>
+                        {{/if}} --}}
                         <button type="submit" formaction="/reserva/aprovar">Aprovar</button>
                         <button type="submit" formaction="/reserva/rejeitar">Rejeitar</button>
                     </form>

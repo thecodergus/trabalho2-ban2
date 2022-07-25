@@ -9,6 +9,12 @@ class Reserva{
         })
     }
 
+    public async reservas_page(req: Req, res: Res){
+        return res.render("reservas", {
+            reservas: await MReserva.find({cliente_id: req.user._id}).lean()
+        })
+    }
+
     public async fazer_reserva(req: Req, res: Res){
         const { hotel, cod_quarto, cama_extra, date_checkin, date_checkout } = req.body
         const {_id} = req.user as any
@@ -28,8 +34,7 @@ class Reserva{
         }
 
         const quarto: any = await (await Hotel.findById(hotel).lean()).quartos.filter((item: any) => item._id === cod_quarto)[0]
-
-        console.log(quarto)
+        
         try{
             await MReserva.create({
                 hotel_id: hotel,
@@ -37,7 +42,8 @@ class Reserva{
                 quarto,
                 check_in: date_checkin,
                 check_out: date_checkout,
-                cama_extra
+                cama_extra,
+                status: "em aguardo"
             })
 
             return res.redirect("/conta/reservas")

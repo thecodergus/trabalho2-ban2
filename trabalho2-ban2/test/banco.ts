@@ -121,22 +121,22 @@ mongoose
 //     }
 // }).then(r => console.log(r)).catch(err => console.error(err))
 
-// Usuario_Empregado.create({
-//     email: `adm@hotel.com`,
-//     senha: "adm",
-//     empregado: true,
-//     data: {
-//         hotel_id: "377477de-b03d-4748-b466-a3348982b633",
-//         nome: "Gustavo",
-//         endereco: "Rua Professor Schutzler",
-//         telefone: "992166025",
-//         funcao: [
-//             "Fazer café",
-//             "Programar",
-//             "Dormir"
-//         ]
-//     }
-// }).then(e => console.log(e)).catch(err => console.error(err))
+Usuario_Empregado.create({
+    email: `adm@hotel.com`,
+    senha: "adm",
+    empregado: true,
+    data: {
+        hotel_id: "42fa648d-c8f8-410b-a146-d4903c9bed5b",
+        nome: "Gustavo",
+        endereco: "Rua Professor Schutzler",
+        telefone: "992166025",
+        funcao: [
+            "Fazer café",
+            "Programar",
+            "Dormir"
+        ]
+    }
+}).then(e => console.log(e)).catch(err => console.error(err))
 
 // async function testando() {
 //     const user = await Usuario.findOne({ username: 'guga.power81120.2079927531@hotel.com'})
@@ -202,8 +202,3 @@ mongoose
 // }
 
 // tt()
-
-
-Reserva.create({
-    quarto: "323fe82f-aa21-4dfa-b071-c6bcb0aaa675"
-})
