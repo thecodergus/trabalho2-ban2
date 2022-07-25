@@ -11,7 +11,7 @@ class Reserva{
 
     public async reservas_page(req: Req, res: Res){
         return res.render("reservas", {
-            reservas: await MReserva.find({cliente_id: req.user._id}).lean()
+            reservas: await MReserva.find({cliente_id: (req.user as any)._id}).lean()
         })
     }
 
