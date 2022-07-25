@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  trab2:
+    build:
+      context: ./
+      dockerfile: ./build/trab2.dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - rede
+    depends_on:
+      - banco_de_dados
+
   banco_de_dados:
     image: mongo:5.0.9
     restart: always
